@@ -21,7 +21,7 @@ The project aims to:
 * Allow users to view their expense history and track where their money goes.
 * Provide a spending breakdown to help users understand their spending habits.
 * Provide saving suggestions based on the user's spending.
-* Give witty, relatable, and encouraging budget notifications.
+* Give witty, relatable, and encouraging budget pop-up messages.
 * Help students become more aware of their spending and develop better money-management habits.
 
 ---
@@ -73,7 +73,7 @@ Shows where most of the user money went.
 </details>
 
 <details>
-<summary><strong>😆 Witty Budget Notifications</strong></summary>
+<summary><strong>😆 Witty Budget Popup Messages</strong></summary>
 
 The system gives funny, relatable, encouraging messages when a certain budget situation happens.
 
@@ -90,4 +90,4 @@ The system gives funny, relatable, encouraging messages when a certain budget si
 | **Saving Suggestion**          | The system can suggest where the user could reduce the spending.                                           |
 | **Expenses Categories**        | The system organizes your spending into categories like food, transportation, shopping, and entertainment. |
 | **Spending Breakdown**         | Shows where most of the user money went.                                                                   |
-| **Witty Budget Notifications** | The system gives funny, relatable, encouraging messages when a certain budget situation happens.           |
+| **Witty Budget Popup Messages** | The system gives funny, relatable, encouraging messages when a certain budget situation happens.           |
