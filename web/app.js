@@ -179,3 +179,34 @@ async function loadBreakdown() {
       <span class="val">${c.percent.toFixed(0)}% (${peso(c.total)})</span></div>`).join('');
   $('#brTip').textContent = b.suggestion;
 }
+
+// Live Clock
+function updateClock() {
+    const clock = document.getElementById("liveClock");
+
+    if (clock) {
+        clock.textContent = new Date().toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+    }
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// Light and Dark Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+if (themeToggle && themeIcon) {
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        const isDark = document.body.classList.contains("dark-mode");
+
+        themeIcon.textContent = isDark ? "☾" : "☼";
+    });
+}
