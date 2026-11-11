@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GastosKita</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- WELCOME PAGE -->
+<section id="welcome">
+  <div class="logo">₱</div>
+  <h1>GastosKita</h1>
+  <p>Track your gastos. Grow your ipon.</p>
+  <button id="startBtn" class="btn big">Get Started</button>
+</section>
+
+<!-- MAIN MENU -->
+<div id="app" class="hidden">
+  <nav id="sidebar">
+    <div class="brand">GastosKita</div>
+    <button data-page="dashboard" class="active">Dashboard</button>
+    <button data-page="add">Add Expense</button>
+    <button data-page="history">History</button>
+    <button data-page="budget">Set Budget</button>
+    <button data-page="calendar">Calendar</button>
+    <button data-page="breakdown">Breakdown</button>
+  </nav>
+
+  <main>
+    <!-- Dashboard -->
+    <section id="page-dashboard" class="page">
+      <h2>Welcome to GastosKita!</h2>
+      <div class="cards">
+        <div class="card"><span>Monthly Budget</span><b id="dBudget">-</b></div>
+        <div class="card"><span>Spent This Month</span><b id="dSpent">-</b></div>
+        <div class="card"><span>Remaining</span><b id="dRemain">-</b></div>
+      </div>
+      <div class="progress"><div id="dBar"></div></div>
+      <p id="dPercent" class="muted"></p>
+      <p id="dMessage" class="witty"></p>
+    </section>
+
+    <!-- Add Expense -->
+    <section id="page-add" class="page hidden">
+      <h2>Add Expense</h2>
+      <form id="addForm" class="form">
+        <label>Amount (₱)<input id="aAmount" type="number" step="0.01" placeholder="e.g. 150.50"></label>
+        <label>Category
+          <select id="aCategory">
+            <option>Food</option><option>Transportation</option>
+            <option>Shopping</option><option>Entertainment</option>
+          </select>
+        </label>
+        <label>Description<input id="aDesc" type="text" maxlength="255" placeholder="e.g. Lunch at canteen"></label>
+        <label>Date<input id="aDate" type="date"></label>
+        <button class="btn" type="submit">Save Expense</button>
+      </form>
+    </section>
+
+    <!-- History -->
+    <section id="page-history" class="page hidden">
+      <h2>Expense History</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Category</th><th>Description</th><th class="r">Amount</th><th></th></tr></thead>
+        <tbody id="hBody"></tbody>
+      </table>
+      <p id="hTotal" class="muted"></p>
+    </section>
+
+    <!-- Budget -->
+    <section id="page-budget" class="page hidden">
+      <h2>Set / Check Budget</h2>
+      <form id="budgetForm" class="form inline">
+        <label>Monthly budget (₱)<input id="bAmount" type="number" step="0.01"></label>
+        <button class="btn" type="submit">Save Budget</button>
+      </form>
+      <p id="bInfo" class="info"></p>
+    </section>
+
+    <!-- Calendar overview -->
+    <section id="page-calendar" class="page hidden">
+      <h2>Calendar Overview</h2>
+      <div class="cal-layout">
+        <div class="cal-left">
+          <div class="cal-top">
+            <select id="cMode"><option>Day</option><option>Week</option><option>Month</option></select>
+            <button id="cPrev" class="btn small">&lt;</button>
+            <b id="cTitle"></b>
+            <button id="cNext" class="btn small">&gt;</button>
+          </div>
+          <div id="cGrid" class="grid"></div>
+          <p id="cWitty" class="witty"></p>
+        </div>
+        <aside class="summary">
+          <h3>Summary of information</h3>
+          <div id="cSummary"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Breakdown -->
+    <section id="page-breakdown" class="page hidden">
+      <h2>Spending Breakdown &amp; Saving Suggestions</h2>
+      <div id="brBars"></div>
+      <div class="suggestion"><h3>Saving suggestion</h3><p id="brTip"></p></div>
+    </section>
+  </main>
+</div>
+
+<!-- Witty popup -->
+<div id="popup" class="hidden"><div class="box">
+  <h3 id="pTitle">GastosKita says...</h3>
+  <p id="pMsg"></p>
+  <button id="pClose" class="btn">OK</button>
+</div></div>
+
+<script src="app.js"></script>
+</body>
+</html>
