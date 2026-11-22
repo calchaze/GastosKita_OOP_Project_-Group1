@@ -5,6 +5,7 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>
 const pad = n => String(n).padStart(2, '0');
 const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 const monthKey = (y, m) => y + '-' + pad(m + 1);
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : s;
 
 async function api(path, opts) {
   const res = await fetch(path, opts);
@@ -27,15 +28,24 @@ function popup(message, kind, title) {
 $('#pClose').onclick = () => $('#popup').classList.add('hidden');
 const kindOf = st => st === 'EXCEEDED' ? 'bad' : st === 'NEARING' ? 'warn' : '';
 
+// ---------- cleared budget (display only, saved in this browser) ----------
+const CLEARED_KEY = 'gk_budget_cleared';
+const NO_BUDGET_MSGS = [
+  'No budget yet? Set one so your wallet has a game plan!',
+  "A budget a day keeps the ‘asan ang pera ko?’ away."
+];
+const budgetCleared = () => localStorage.getItem(CLEARED_KEY) === '1';
+function applyCleared(s) {
+  if (!budgetCleared()) return s;
+  return { ...s, budget: 0, remaining: 0, percent: 0, status: 'NONE',
+           message: NO_BUDGET_MSGS[Math.floor(Math.random() * NO_BUDGET_MSGS.length)] };
+}
+const getSummary = async () => applyCleared(await api('/api/summary'));
+
 // ---------- navigation ----------
 const loaders = { dashboard: loadDashboard, add: loadAdd, history: loadHistory,
                   budget: loadBudget, calendar: loadCalendar, breakdown: loadBreakdown };
 
-$('#startBtn').onclick = () => {
-  $('#welcome').classList.add('hidden');
-  $('#app').classList.remove('hidden');
-  show('dashboard');
-};
 document.querySelectorAll('#sidebar button').forEach(b => b.onclick = () => show(b.dataset.page));
 
 function show(page) {
@@ -47,14 +57,16 @@ function show(page) {
 
 // ---------- dashboard ----------
 async function loadDashboard() {
-  const s = await api('/api/summary');
+  const name = cap(currentName());
+  $('#dWelcome').textContent = name ? 'Welcome ' + name + ' to GastosKita' : 'Welcome to GastosKita';
+  const s = await getSummary();
   $('#dBudget').textContent = peso(s.budget);
   $('#dSpent').textContent = peso(s.spent);
   $('#dRemain').textContent = peso(s.remaining);
   $('#dRemain').style.color = s.remaining < 0 ? '#c62828' : '#2E7D32';
   $('#dBar').style.width = Math.min(100, s.percent) + '%';
   $('#dBar').style.background = s.status === 'EXCEEDED' ? '#c62828' : s.status === 'NEARING' ? '#ef6c00' : '#2E7D32';
-  $('#dPercent').textContent = s.percent.toFixed(0) + '% of budget used';
+  $('#dPercent').textContent = s.status === 'NONE' ? 'No budget set yet' : s.percent.toFixed(0) + '% of budget used';
   $('#dMessage').textContent = s.message;
 }
 
@@ -64,10 +76,10 @@ async function loadAdd() { $('#aDate').value = ymd(new Date()); }
 $('#addForm').onsubmit = async e => {
   e.preventDefault();
   try {
-    const s = await post('/api/expenses', {
+    const s = applyCleared(await post('/api/expenses', {
       amount: $('#aAmount').value, category: $('#aCategory').value,
       description: $('#aDesc').value, date: $('#aDate').value
-    });
+    }));
     $('#aAmount').value = ''; $('#aDesc').value = '';
     popup(s.message, kindOf(s.status));
   } catch (err) {
@@ -95,20 +107,29 @@ async function loadHistory() {
 
 // ---------- budget ----------
 async function loadBudget() {
-  const s = await api('/api/summary');
-  $('#bInfo').innerHTML = `Current budget: <b>${peso(s.budget)}</b><br>
-    Spent this month: <b>${peso(s.spent)}</b><br>Remaining: <b>${peso(s.remaining)}</b>`;
+  const s = await getSummary();
+  $('#bInfo').innerHTML = s.status === 'NONE'
+    ? `Current budget: <b>Not set</b><br>Spent this month: <b>${peso(s.spent)}</b>`
+    : `Current budget: <b>${peso(s.budget)}</b><br>
+       Spent this month: <b>${peso(s.spent)}</b><br>Remaining: <b>${peso(s.remaining)}</b>`;
 }
 $('#budgetForm').onsubmit = async e => {
   e.preventDefault();
   try {
     const s = await post('/api/budget', { amount: $('#bAmount').value });
+    localStorage.removeItem(CLEARED_KEY);
     $('#bAmount').value = '';
     loadBudget();
     popup(s.message, kindOf(s.status));
   } catch (err) {
     popup(err.message, 'warn', 'Invalid input');
   }
+};
+$('#clearBudgetBtn').onclick = () => {
+  if (!confirm('Clear your monthly budget?')) return;
+  localStorage.setItem(CLEARED_KEY, '1');
+  loadBudget().catch(e => popup(e.message, 'bad', 'Error'));
+  popup('Your budget was cleared. Set a new one anytime.', '', 'Budget cleared');
 };
 
 // ---------- calendar ----------
@@ -160,10 +181,10 @@ async function loadCalendar() {
   } else {
     from = to = cal.sel; label = 'Day: ' + cal.sel;
   }
-  const [list, s] = await Promise.all([api(`/api/expenses?from=${from}&to=${to}`), api('/api/summary')]);
+  const [list, s] = await Promise.all([api(`/api/expenses?from=${from}&to=${to}`), getSummary()]);
   const total = list.reduce((a, x) => a + x.amount, 0);
   $('#cSummary').innerHTML = `<p><b>${label}</b><br>Total spending: <b>${peso(total)}</b><br>
-    Remaining monthly budget: <b>${peso(s.remaining)}</b></p>` +
+    Remaining monthly budget: <b>${s.status === 'NONE' ? 'No budget set' : peso(s.remaining)}</b></p>` +
     (list.length ? '<ul>' + list.map(x =>
       `<li>${x.date} · ${esc(x.category)}: ${esc(x.description)} (${peso(x.amount)})</li>`).join('') + '</ul>'
       : '<p class="muted">No expenses in this period.</p>');
@@ -178,4 +199,123 @@ async function loadBreakdown() {
       <div class="track"><div class="fill" style="width:${c.percent}%"></div></div>
       <span class="val">${c.percent.toFixed(0)}% (${peso(c.total)})</span></div>`).join('');
   $('#brTip').textContent = b.suggestion;
+}
+
+// ---------- login (front-end only, saved in this browser) ----------
+const USERS_KEY = 'gk_users', SESSION_KEY = 'gk_session', NAME_KEY = 'gk_name';
+const MIN_PASSWORD = 5;
+let signupMode = false;
+
+const currentName = () => localStorage.getItem(NAME_KEY) || localStorage.getItem(SESSION_KEY) || '';
+const loginErr = m => { $('#lError').textContent = m; };
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; }
+}
+
+function enterApp() {
+  $('#login').classList.add('hidden');
+  $('#welcome').classList.add('hidden');
+  const name = cap(currentName());
+  $('#uwTitle').textContent = 'Welcome ' + (name ? name + ' ' : '') + 'to GastosKita website';
+  $('#userWelcome').classList.remove('hidden');
+}
+
+$('#uwBtn').onclick = () => {
+  $('#userWelcome').classList.add('hidden');
+  $('#app').classList.remove('hidden');
+  show('dashboard');
+};
+
+function setMode(signup) {
+  signupMode = signup;
+  $('#loginTitle').textContent = signup ? 'Create your account' : 'Log in to GastosKita';
+  $('#lSubmit').textContent = signup ? 'Sign up' : 'Log in';
+  $('#lSwitchText').textContent = signup ? 'Already have an account?' : 'No account yet?';
+  $('#lSwitch').textContent = signup ? 'Log in' : 'Sign up';
+  $('#lConfirmWrap').classList.toggle('hidden', !signup);
+  $('#lConfirm').required = signup;
+  loginErr('');
+}
+
+$('#startBtn').onclick = () => {
+  $('#welcome').classList.add('hidden');
+  if (localStorage.getItem(SESSION_KEY)) enterApp();
+  else $('#login').classList.remove('hidden');
+};
+
+$('#lSwitch').onclick = e => { e.preventDefault(); setMode(!signupMode); };
+
+$('#loginForm').onsubmit = async e => {
+  e.preventDefault();
+  const raw = $('#lUser').value.trim();
+  const user = raw.toLowerCase();
+  const pass = $('#lPass').value;
+  const users = getUsers();
+  let display = raw;
+  try {
+    if (signupMode) {
+      if (user.length < 3) return loginErr('Username must be at least 3 characters.');
+      if (pass.length < MIN_PASSWORD) return loginErr('Password must be at least ' + MIN_PASSWORD + ' characters.');
+      if (pass !== $('#lConfirm').value) return loginErr('Passwords do not match.');
+      if (users[user]) return loginErr('That username is already taken.');
+      users[user] = { h: await sha256(pass), n: raw };
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    } else {
+      const rec = users[user];
+      const hash = rec && (typeof rec === 'string' ? rec : rec.h);
+      if (!hash || hash !== await sha256(pass)) return loginErr('Wrong username or password.');
+      display = (rec && rec.n) || user;
+    }
+    localStorage.setItem(SESSION_KEY, user);
+    localStorage.setItem(NAME_KEY, display);
+    $('#loginForm').reset();
+    enterApp();
+  } catch (ex) {
+    loginErr('Something went wrong: ' + ex.message);
+  }
+};
+
+$('#logoutBtn').onclick = () => {
+  localStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(NAME_KEY);
+  $('#userWelcome').classList.add('hidden');
+  $('#app').classList.add('hidden');
+  setMode(false);
+  $('#login').classList.remove('hidden');
+};
+
+// Live Clock
+function updateClock() {
+    const clock = document.getElementById("liveClock");
+
+    if (clock) {
+        clock.textContent = new Date().toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+    }
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// Light and Dark Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+if (themeToggle && themeIcon) {
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        const isDark = document.body.classList.contains("dark-mode");
+
+        themeIcon.textContent = isDark ? "☾" : "☼";
+    });
 }
