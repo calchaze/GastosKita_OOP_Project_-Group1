@@ -1,0 +1,8 @@
+[33m4d9e1f5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'main' of https://github.com/calchaze/GastosKita_OOP_Project_-Group1
+[33m458d896[m Add web folder with HTML, CSS and JS
+[33md7d0372[m Add DBConnection and ExpenseDAO classes
+[33m85be6c0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfactory-only[m[33m)[m Add FoodExpense Class
+[33mc647a09[m Add Budget class
+[33m5ba5a4e[m Add database folder
+[33m772335f[m Added MySQL Connector Jar
+[33mce41def[m Add ExpenseFactory.java

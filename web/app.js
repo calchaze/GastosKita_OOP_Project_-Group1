@@ -221,7 +221,7 @@ function enterApp() {
   $('#login').classList.add('hidden');
   $('#welcome').classList.add('hidden');
   const name = cap(currentName());
-  $('#uwTitle').textContent = 'Welcome ' + (name ? name + ' ' : '') + 'to GastosKita website';
+  $('#uwTitle').textContent = 'Welcome ' + (name ? name + ' ' : '') + 'to GastosKita website!';
   $('#userWelcome').classList.remove('hidden');
 }
 
