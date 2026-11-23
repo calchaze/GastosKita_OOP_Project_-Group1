@@ -9,23 +9,23 @@ public class PopupMessages {
     private final Random random = new Random();
 
     private static final String[] NONE = {
-        "No budget yet? Set one so your wallet has a game plan!",
-        "A budget a day keeps the 'asan ang pera ko?' away."
+        "May laman ba 'yan o hangin lang? check mo muna.",
+        "Grabe mas marami pang laman ang chismis kaysa wallet mo ah."
     };
     private static final String[] WITHIN = {
-        "Wow, ang galing! Your wallet is smiling today.",
-        "Budget status: chill. Keep it up, future millionaire!",
-        "Ipon mode: ON. Your future self says thank you!"
+        "Ay WOW! Responsible adult na yarn? Character development! ",
+        "Yern hindi na sya nag pabudol. Proud ang nanay at tatay mo sa'yo beh",
+        "Ipon mode: ON. Financially stable ang atake. Sana all!"
     };
     private static final String[] NEARING = {
-        "Easy lang! Your budget is already sweating a little.",
-        "Almost at the limit! Pause muna bago mag-checkout.",
-        "Your wallet is whispering: 'tama na muna, please.'"
+        "Beh, kalma. Hindi ka tagapagmana ng SM kaloka ka!",
+        "Konting gastos pa, sardinas na ang magiging love language mo.",
+        "Your wallet is whispering: baby enough na fohh."
     };
     private static final String[] EXCEEDED = {
-        "Oops! Over budget na. Time for a 'baon-only' week!",
-        "Your budget said goodbye... but you can still win next week!",
-        "Budget exceeded! Walang judgment, pero bawas-bawas muna tayo."
+        "Wala na. Empty na. Pati hangin wala.",
+        "Baby ang gastos mo fohh",
+        "Mapapakanta kana lang talaga. 'I did my best, but I guess my best wasn't good enough' hays."
     };
 
     public String generateWitty(Budget.Status status) {
