@@ -1,3 +1,4 @@
+
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -332,7 +333,7 @@ async function loadCalendar() {
 
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => <div class="dow">${d}</div>).join('');
+  ].map(d => `<div class="dow">${d}</div>`).join('');
 
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
@@ -388,7 +389,7 @@ async function loadCalendar() {
 
     from = ymd(start);
     to = ymd(end);
-    label = Week: ${from} to ${to};
+    label = `Week: ${from} to ${to}`;
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -405,7 +406,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(/api/expenses?from=${from}&to=${to}),
+    api(`/api/expenses?from=${from}&to=${to}`),
     getSummary()
   ]);
 
@@ -448,17 +449,37 @@ async function loadBreakdown() {
     </div>
   `).join('');
 
-  // Practical saving suggestions for each category
+  // Witty, practical, randomized saving suggestions
   const savingTips = {
-    Food: 'Bring food or snacks from home when possible. Limit unnecessary food deliveries and eating out.',
+    Food: [
+      "Beh, hindi lahat ng cravings kailangang i-checkout! Magbaon naman minsan. Your wallet deserves a break from food deliveries.",
+      "Kain nang maayos, pero huwag araw-araw feeling food vlogger! Try bringing snacks or lunch from home a few days a week.",
+      "Ang mahal ng cravings mo, beh! Plan your meals and limit unnecessary food deliveries. Mas masarap ang pagkain kapag may natitira pang budget."
+    ],
 
-    Transportation: 'Plan your trips ahead, combine errands, and use affordable public transportation when practical.',
+    Transportation: [
+      "Lakarin kung malapit lang, beh! Plan your trips and combine errands. Hindi kailangang bawat lakad may pamasahe.",
+      "Bawat sakay, bawas sa budget! Try using affordable public transportation and plan your trips ahead.",
+      "Hindi ka naman laging nagmamadali, beh! Combine errands in one trip to save time and transportation expenses."
+    ],
 
-    Shopping: 'Make a shopping list, compare prices, and wait 24 hours before buying non-essential items.',
+    Shopping: [
+      "Add to cart ngayon, isipin bukas! Wait 24 hours bago bumili. Baka naman gusto mo lang, hindi mo talaga kailangan.",
+      "Beh, hindi lahat ng sale ay savings! Compare prices and make a shopping list before buying anything.",
+      "Your cart is full, but is your wallet ready? Avoid impulse buying and prioritize the things you actually need."
+    ],
 
-    Entertainment: 'Set a weekly entertainment allowance and explore free activities instead of always spending money.',
+    Entertainment: [
+      "Enjoy life, pero huwag ubusin ang budget sa kakagala! Set a weekly allowance and try free activities with friends.",
+      "Hindi kailangang gumastos para maging masaya! Explore free events and activities instead of always spending money.",
+      "Your friends can have fun without an expensive bill! Set a weekly entertainment budget and stick to it."
+    ],
 
-    Others: 'Separate necessary miscellaneous expenses from optional purchases. Set a weekly spending limit.'
+    Others: [
+      "Miscellaneous lang dapat, hindi mystery spending! Ihiwalay ang needs sa wants at mag-set ng weekly limit.",
+      "Beh, saan napunta ang pera? Review your miscellaneous expenses and check which purchases you can avoid next time.",
+      "Small gastos can become big gastos! Keep track of your extra purchases and prioritize your actual needs."
+    ]
   };
 
   // Find the category with the highest spending
@@ -469,14 +490,17 @@ async function loadBreakdown() {
   // Display the appropriate saving suggestion
   if (!highest.name || Number(highest.total) <= 0) {
     $('#brTip').textContent =
-      'Start recording your expenses to receive practical saving suggestions.';
+      'Wala pang gastos na recorded! Add your expenses first para malaman natin kung saan puwedeng mag-save. Your wallet is waiting for its plot twist!';
   } else {
     const category = highest.name;
-    const tip = savingTips[category] ||
-      'Review your expenses and identify purchases you can reduce or avoid.';
+    const tips = savingTips[category] || [
+      'Review your expenses and identify purchases you can reduce or avoid.'
+    ];
+
+    const tip = tips[Math.floor(Math.random() * tips.length)];
 
     $('#brTip').textContent =
-      Most of your money (${Number(highest.percent).toFixed(0)}%) went to ${category}. ${tip};
+      `Your biggest gastos this month: ${category} (${Number(highest.percent).toFixed(0)}%). ${tip}`;
   }
 }
 
