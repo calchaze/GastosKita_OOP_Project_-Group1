@@ -32,7 +32,9 @@
             <span id="liveClock">00:00:00 AM</span>
         </div>
 
-        <button id="logoutBtn" class="btn small logout-btn" type="button">Log out</button>
+        <button id="logoutBtn" class="btn small logout-btn" type="button">
+            Log out
+        </button>
 
         <button id="themeToggle" class="theme-toggle" type="button">
             <span id="themeIcon">☼</span>
@@ -82,7 +84,7 @@
     </form>
 </section>
 
-<!-- USER WELCOME PAGE (after login) -->
+<!-- USER WELCOME PAGE -->
 <section id="userWelcome" class="hidden">
     <div class="glass-box">
         <img class="logo" src="logo-icon.png" alt="GastosKita logo">
@@ -97,7 +99,7 @@
 
     <main>
 
-        <!-- Dashboard -->
+        <!-- DASHBOARD -->
         <section id="page-dashboard" class="page">
             <h2 id="dWelcome">Welcome to GastosKita</h2>
 
@@ -126,7 +128,7 @@
             <p id="dMessage" class="witty"></p>
         </section>
 
-        <!-- Budget -->
+        <!-- SET BUDGET -->
         <section id="page-budget" class="page hidden">
             <h2>Set / Check Budget</h2>
 
@@ -140,13 +142,15 @@
             </form>
 
             <div class="budget-actions">
-                <button id="clearBudgetBtn" type="button" class="btn danger wide">Clear Budget</button>
+                <button id="clearBudgetBtn" type="button" class="btn danger wide">
+                    Clear Budget
+                </button>
             </div>
 
             <p id="bInfo" class="info"></p>
         </section>
 
-        <!-- Add Expense -->
+        <!-- ADD EXPENSE -->
         <section id="page-add" class="page hidden">
             <h2>Add Expense</h2>
 
@@ -183,7 +187,7 @@
             </form>
         </section>
 
-        <!-- History -->
+        <!-- HISTORY -->
         <section id="page-history" class="page hidden">
             <h2>Expense History</h2>
 
@@ -204,7 +208,7 @@
             <p id="hTotal" class="muted"></p>
         </section>
 
-        <!-- Calendar -->
+        <!-- CALENDAR -->
         <section id="page-calendar" class="page hidden">
             <h2>Calendar Overview</h2>
 
@@ -235,7 +239,7 @@
             </div>
         </section>
 
-        <!-- Breakdown -->
+        <!-- BREAKDOWN -->
         <section id="page-breakdown" class="page hidden">
             <h2>Spending Breakdown &amp; Saving Suggestions</h2>
 
@@ -253,7 +257,7 @@
 <!-- WITTY POPUP -->
 <div id="popup" class="hidden">
     <div class="box">
-        <h3 id="pTitle">GastosKita says...</h3>
+        <h3 id="pTitle">Successfully Saved!</h3>
         <p id="pMsg"></p>
         <button id="pClose" class="btn">OK</button>
     </div>
