@@ -1,3 +1,4 @@
+
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -7,11 +8,11 @@ const peso = n => '₱' + Number(n).toLocaleString('en-PH', {
 });
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '"':'&quot;',
-  "'":'&#39;'
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
 }[c]));
 
 const pad = n => String(n).padStart(2, '0');
@@ -43,7 +44,6 @@ const post = (path, obj) => api(path, {
 
 // ---------- popup notifications ----------
 function popup(message, kind, title) {
-
   let heading = title;
 
   if (!heading) {
@@ -118,7 +118,11 @@ function show(page) {
     p.classList.add('hidden');
   });
 
-  $('#page-' + page).classList.remove('hidden');
+  const target = $('#page-' + page);
+
+  if (!target || !loaders[page]) return;
+
+  target.classList.remove('hidden');
 
   document.querySelectorAll('#sidebar button').forEach(b => {
     b.classList.toggle('active', b.dataset.page === page);
@@ -296,7 +300,9 @@ const cal = {
   sel: ymd(today)
 };
 
-$('#cMode').onchange = () => loadCalendar();
+$('#cMode').onchange = () => {
+  loadCalendar().catch(e => popup(e.message, 'bad', 'Error'));
+};
 
 $('#cPrev').onclick = () => moveMonth(-1);
 $('#cNext').onclick = () => moveMonth(1);
@@ -327,7 +333,7 @@ async function loadCalendar() {
 
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => <div class="dow">${d}</div>).join('');
+  ].map(d => `<div class="dow">${d}</div>`).join('');
 
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
@@ -383,7 +389,7 @@ async function loadCalendar() {
 
     from = ymd(start);
     to = ymd(end);
-    label = Week: ${from} to ${to};
+    label = `Week: ${from} to ${to}`;
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -400,7 +406,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(/api/expenses?from=${from}&to=${to}),
+    api(`/api/expenses?from=${from}&to=${to}`),
     getSummary()
   ]);
 
@@ -642,7 +648,6 @@ const themeIcon = document.getElementById('themeIcon');
 
 if (themeToggle && themeIcon) {
   themeToggle.addEventListener('click', function () {
-
     document.body.classList.toggle('dark-mode');
 
     const isDark =
