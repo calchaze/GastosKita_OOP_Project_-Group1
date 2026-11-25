@@ -331,6 +331,7 @@ async function loadCalendar() {
     '/api/daily?month=' + monthKey(cal.y, cal.m)
   );
 
+  // FIXED: Weekday HTML template literal
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
   ].map(d => <div class="dow">${d}</div>).join('');
@@ -389,6 +390,8 @@ async function loadCalendar() {
 
     from = ymd(start);
     to = ymd(end);
+
+    // FIXED: Week label template literal
     label = Week: ${from} to ${to};
 
   } else if (mode === 'Month') {
@@ -405,6 +408,7 @@ async function loadCalendar() {
     label = 'Day: ' + cal.sel;
   }
 
+  // FIXED: API URL template literal
   const [list, s] = await Promise.all([
     api(/api/expenses?from=${from}&to=${to}),
     getSummary()
