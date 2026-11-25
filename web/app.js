@@ -1,4 +1,3 @@
-
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -333,7 +332,7 @@ async function loadCalendar() {
 
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => `<div class="dow">${d}</div>`).join('');
+  ].map(d => <div class="dow">${d}</div>).join('');
 
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
@@ -389,7 +388,7 @@ async function loadCalendar() {
 
     from = ymd(start);
     to = ymd(end);
-    label = `Week: ${from} to ${to}`;
+    label = Week: ${from} to ${to};
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -406,7 +405,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(`/api/expenses?from=${from}&to=${to}`),
+    api(/api/expenses?from=${from}&to=${to}),
     getSummary()
   ]);
 
@@ -436,6 +435,7 @@ async function loadCalendar() {
 async function loadBreakdown() {
   const b = await api('/api/breakdown');
 
+  // Display spending breakdown bars
   $('#brBars').innerHTML = b.categories.map(c => `
     <div class="bar-row">
       <span class="name">${esc(c.name)}</span>
@@ -448,7 +448,36 @@ async function loadBreakdown() {
     </div>
   `).join('');
 
-  $('#brTip').textContent = b.suggestion;
+  // Practical saving suggestions for each category
+  const savingTips = {
+    Food: 'Bring food or snacks from home when possible. Limit unnecessary food deliveries and eating out.',
+
+    Transportation: 'Plan your trips ahead, combine errands, and use affordable public transportation when practical.',
+
+    Shopping: 'Make a shopping list, compare prices, and wait 24 hours before buying non-essential items.',
+
+    Entertainment: 'Set a weekly entertainment allowance and explore free activities instead of always spending money.',
+
+    Others: 'Separate necessary miscellaneous expenses from optional purchases. Set a weekly spending limit.'
+  };
+
+  // Find the category with the highest spending
+  const highest = b.categories.reduce((max, current) =>
+    Number(current.total) > Number(max.total) ? current : max
+  , { total: 0, name: '', percent: 0 });
+
+  // Display the appropriate saving suggestion
+  if (!highest.name || Number(highest.total) <= 0) {
+    $('#brTip').textContent =
+      'Start recording your expenses to receive practical saving suggestions.';
+  } else {
+    const category = highest.name;
+    const tip = savingTips[category] ||
+      'Review your expenses and identify purchases you can reduce or avoid.';
+
+    $('#brTip').textContent =
+      Most of your money (${Number(highest.percent).toFixed(0)}%) went to ${category}. ${tip};
+  }
 }
 
 
