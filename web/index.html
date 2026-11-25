@@ -43,6 +43,7 @@
 
 </nav>
 
+
 <!-- WELCOME PAGE -->
 <section id="welcome">
     <div class="glass-box">
@@ -51,6 +52,7 @@
         <button id="startBtn" class="btn big">Get Started</button>
     </div>
 </section>
+
 
 <!-- LOGIN PAGE -->
 <section id="login" class="hidden">
@@ -84,6 +86,7 @@
     </form>
 </section>
 
+
 <!-- USER WELCOME PAGE -->
 <section id="userWelcome" class="hidden">
     <div class="glass-box">
@@ -93,6 +96,7 @@
         <button id="uwBtn" class="btn big">Go to Dashboard</button>
     </div>
 </section>
+
 
 <!-- MAIN SYSTEM -->
 <div id="app" class="hidden">
@@ -128,6 +132,7 @@
             <p id="dMessage" class="witty"></p>
         </section>
 
+
         <!-- SET BUDGET -->
         <section id="page-budget" class="page hidden">
             <h2>Set / Check Budget</h2>
@@ -149,6 +154,7 @@
 
             <p id="bInfo" class="info"></p>
         </section>
+
 
         <!-- ADD EXPENSE -->
         <section id="page-add" class="page hidden">
@@ -187,6 +193,7 @@
             </form>
         </section>
 
+
         <!-- HISTORY -->
         <section id="page-history" class="page hidden">
             <h2>Expense History</h2>
@@ -208,6 +215,7 @@
             <p id="hTotal" class="muted"></p>
         </section>
 
+
         <!-- CALENDAR -->
         <section id="page-calendar" class="page hidden">
             <h2>Calendar Overview</h2>
@@ -222,9 +230,9 @@
                             <option>Month</option>
                         </select>
 
-                        <button id="cPrev" class="btn small">&lt;</button>
+                        <button id="cPrev" class="btn small" type="button">&lt;</button>
                         <b id="cTitle"></b>
-                        <button id="cNext" class="btn small">&gt;</button>
+                        <button id="cNext" class="btn small" type="button">&gt;</button>
                     </div>
 
                     <div id="cGrid" class="grid"></div>
@@ -239,6 +247,7 @@
             </div>
         </section>
 
+
         <!-- BREAKDOWN -->
         <section id="page-breakdown" class="page hidden">
             <h2>Spending Breakdown &amp; Saving Suggestions</h2>
@@ -247,21 +256,25 @@
 
             <div class="suggestion">
                 <h3>Saving suggestion</h3>
-                <p id="brTip"></p>
+
+                <!-- Updated container for the redesigned suggestion -->
+                <div id="brTip"></div>
             </div>
         </section>
 
     </main>
 </div>
 
+
 <!-- WITTY POPUP -->
 <div id="popup" class="hidden">
     <div class="box">
         <h3 id="pTitle">Successfully Saved!</h3>
         <p id="pMsg"></p>
-        <button id="pClose" class="btn">OK</button>
+        <button id="pClose" class="btn" type="button">OK</button>
     </div>
 </div>
+
 
 <script src="app.js"></script>
 
