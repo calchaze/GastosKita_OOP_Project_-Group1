@@ -19,9 +19,9 @@
     <!-- MAIN SYSTEM NAVIGATION -->
     <div id="sidebar" class="nav-links">
         <button data-page="dashboard" class="active">Dashboard</button>
+        <button data-page="budget">Set Budget</button>
         <button data-page="add">Add Expense</button>
         <button data-page="history">History</button>
-        <button data-page="budget">Set Budget</button>
         <button data-page="calendar">Calendar</button>
         <button data-page="breakdown">Breakdown</button>
     </div>
@@ -126,6 +126,26 @@
             <p id="dMessage" class="witty"></p>
         </section>
 
+        <!-- Budget -->
+        <section id="page-budget" class="page hidden">
+            <h2>Set / Check Budget</h2>
+
+            <form id="budgetForm" class="form inline">
+                <label>
+                    Monthly budget (₱)
+                    <input id="bAmount" type="number" step="0.01">
+                </label>
+
+                <button class="btn" type="submit">Save Budget</button>
+            </form>
+
+            <div class="budget-actions">
+                <button id="clearBudgetBtn" type="button" class="btn danger wide">Clear Budget</button>
+            </div>
+
+            <p id="bInfo" class="info"></p>
+        </section>
+
         <!-- Add Expense -->
         <section id="page-add" class="page hidden">
             <h2>Add Expense</h2>
@@ -182,26 +202,6 @@
             </table>
 
             <p id="hTotal" class="muted"></p>
-        </section>
-
-        <!-- Budget -->
-        <section id="page-budget" class="page hidden">
-            <h2>Set / Check Budget</h2>
-
-            <form id="budgetForm" class="form inline">
-                <label>
-                    Monthly budget (₱)
-                    <input id="bAmount" type="number" step="0.01">
-                </label>
-
-                <button class="btn" type="submit">Save Budget</button>
-            </form>
-
-            <div class="budget-actions">
-                <button id="clearBudgetBtn" type="button" class="btn danger wide">Clear Budget</button>
-            </div>
-
-            <p id="bInfo" class="info"></p>
         </section>
 
         <!-- Calendar -->
