@@ -333,7 +333,7 @@ async function loadCalendar() {
 
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => `<div class="dow">${d}</div>`).join('');
+  ].map(d => <div class="dow">${d}</div>).join('');
 
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
@@ -389,7 +389,7 @@ async function loadCalendar() {
 
     from = ymd(start);
     to = ymd(end);
-    label = `Week: ${from} to ${to}`;
+    label = Week: ${from} to ${to};
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -406,7 +406,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(`/api/expenses?from=${from}&to=${to}`),
+    api(/api/expenses?from=${from}&to=${to}),
     getSummary()
   ]);
 
@@ -444,64 +444,152 @@ async function loadBreakdown() {
         <div class="fill" style="width:${c.percent}%"></div>
       </div>
       <span class="val">
-        ${c.percent.toFixed(0)}% (${peso(c.total)})
+        ${Number(c.percent).toFixed(0)}% (${peso(c.total)})
       </span>
     </div>
   `).join('');
 
-  // Witty, practical, randomized saving suggestions
+  // Witty jokes and practical advice per category
   const savingTips = {
     Food: [
-      "Beh, hindi lahat ng cravings kailangang i-checkout! Magbaon naman minsan. Your wallet deserves a break from food deliveries.",
-      "Kain nang maayos, pero huwag araw-araw feeling food vlogger! Try bringing snacks or lunch from home a few days a week.",
-      "Ang mahal ng cravings mo, beh! Plan your meals and limit unnecessary food deliveries. Mas masarap ang pagkain kapag may natitira pang budget."
+      {
+        joke: "Beh, hindi lahat ng cravings kailangang i-checkout! Your wallet deserves a break.",
+        advice: "Try bringing food or snacks from home a few days a week. Plan your meals to avoid unnecessary food deliveries."
+      },
+      {
+        joke: "Ang cravings mo, may sariling monthly subscription na yata!",
+        advice: "Set a food allowance and stick to it. You can still enjoy your favorite food without overspending."
+      },
+      {
+        joke: "Kain nang kain, pero ang wallet mo nagugutom na!",
+        advice: "Prepare a simple meal plan and limit spontaneous food purchases."
+      }
     ],
 
     Transportation: [
-      "Lakarin kung malapit lang, beh! Plan your trips and combine errands. Hindi kailangang bawat lakad may pamasahe.",
-      "Bawat sakay, bawas sa budget! Try using affordable public transportation and plan your trips ahead.",
-      "Hindi ka naman laging nagmamadali, beh! Combine errands in one trip to save time and transportation expenses."
+      {
+        joke: "Parang may personal driver ka sa dami ng pamasahe mo, beh!",
+        advice: "Combine errands in one trip and consider affordable transportation options when available."
+      },
+      {
+        joke: "Bawat sakay, may kasamang goodbye sa budget!",
+        advice: "Plan your trips ahead to avoid unnecessary rides and extra transportation expenses."
+      },
+      {
+        joke: "Hindi lahat ng lakad kailangan may pamasahe!",
+        advice: "For nearby destinations, consider walking when it is safe and practical."
+      }
     ],
 
     Shopping: [
-      "Add to cart ngayon, isipin bukas! Wait 24 hours bago bumili. Baka naman gusto mo lang, hindi mo talaga kailangan.",
-      "Beh, hindi lahat ng sale ay savings! Compare prices and make a shopping list before buying anything.",
-      "Your cart is full, but is your wallet ready? Avoid impulse buying and prioritize the things you actually need."
+      {
+        joke: "Add to cart ngayon, regret later. Familiar ba, beh?",
+        advice: "Wait 24 hours before buying non-essential items. Ask yourself if you really need them."
+      },
+      {
+        joke: "Your cart is full, but is your wallet emotionally prepared?",
+        advice: "Make a shopping list and prioritize necessities before buying anything else."
+      },
+      {
+        joke: "Beh, hindi lahat ng sale ay savings!",
+        advice: "Compare prices and avoid impulse purchases. A discount is not a saving if you did not need the item."
+      }
     ],
 
     Entertainment: [
-      "Enjoy life, pero huwag ubusin ang budget sa kakagala! Set a weekly allowance and try free activities with friends.",
-      "Hindi kailangang gumastos para maging masaya! Explore free events and activities instead of always spending money.",
-      "Your friends can have fun without an expensive bill! Set a weekly entertainment budget and stick to it."
+      {
+        joke: "Enjoy life, pero huwag naman pati emergency fund kasama sa gala!",
+        advice: "Set a weekly entertainment allowance and explore free activities with friends."
+      },
+      {
+        joke: "Main character ka sa gala, pero supporting character na lang ang budget!",
+        advice: "Look for affordable activities and plan your outings ahead of time."
+      },
+      {
+        joke: "Masaya ang gala, pero mas masaya kung may natirang pera!",
+        advice: "Choose which activities are worth spending on and limit unnecessary expenses."
+      }
     ],
 
     Others: [
-      "Miscellaneous lang dapat, hindi mystery spending! Ihiwalay ang needs sa wants at mag-set ng weekly limit.",
-      "Beh, saan napunta ang pera? Review your miscellaneous expenses and check which purchases you can avoid next time.",
-      "Small gastos can become big gastos! Keep track of your extra purchases and prioritize your actual needs."
+      {
+        joke: "Beh, saan napunta ang pera? Parang may magic trick na nangyari sa wallet mo!",
+        advice: "Review your miscellaneous expenses and separate your needs from your wants."
+      },
+      {
+        joke: "Miscellaneous lang dapat, hindi mystery spending!",
+        advice: "Write down your extra purchases and set a weekly limit for unexpected expenses."
+      },
+      {
+        joke: "Small gastos today, malaking plot twist sa wallet tomorrow!",
+        advice: "Track even your small purchases. They can add up faster than you expect."
+      }
     ]
   };
 
   // Find the category with the highest spending
   const highest = b.categories.reduce((max, current) =>
-    Number(current.total) > Number(max.total) ? current : max
-  , { total: 0, name: '', percent: 0 });
+    Number(current.total) > Number(max.total) ? current : max,
+    { total: 0, name: '', percent: 0 }
+  );
 
-  // Display the appropriate saving suggestion
+  const tipContainer = $('#brTip');
+
+  // Empty state
   if (!highest.name || Number(highest.total) <= 0) {
-    $('#brTip').textContent =
-      'Wala pang gastos na recorded! Add your expenses first para malaman natin kung saan puwedeng mag-save. Your wallet is waiting for its plot twist!';
-  } else {
-    const category = highest.name;
-    const tips = savingTips[category] || [
-      'Review your expenses and identify purchases you can reduce or avoid.'
-    ];
-
-    const tip = tips[Math.floor(Math.random() * tips.length)];
-
-    $('#brTip').textContent =
-      `Your biggest gastos this month: ${category} (${Number(highest.percent).toFixed(0)}%). ${tip}`;
+    tipContainer.innerHTML = `
+      <div class="saving-message">
+        <h3>Your wallet is waiting! 💸</h3>
+        <p class="saving-joke">
+          Wala pang gastos na recorded. Your wallet is currently living its peaceful era!
+        </p>
+        <div class="saving-advice">
+          <strong>💡 Little tip:</strong>
+          <p>
+            Add your expenses first so GastosKita can help you
+            understand where your money goes.
+          </p>
+        </div>
+      </div>
+    `;
+    return;
   }
+
+  // Select a random suggestion for the highest category
+  const category = highest.name;
+  const tips = savingTips[category] || [
+    {
+      joke: "Your wallet has something to say about these expenses!",
+      advice: "Review your spending and identify purchases you can reduce or avoid."
+    }
+  ];
+
+  const selectedTip = tips[
+    Math.floor(Math.random() * tips.length)
+  ];
+
+  // Display category, joke, and advice separately
+  tipContainer.innerHTML = `
+    <div class="saving-message">
+      <div class="saving-category">
+        <span>HIGHEST SPENDING CATEGORY</span>
+        <strong>
+          ${esc(category)} · ${Number(highest.percent).toFixed(0)}%
+        </strong>
+      </div>
+
+      <h3>Your wallet has something to say! 💸</h3>
+
+      <p class="saving-joke">
+        "${esc(selectedTip.joke)}"
+      </p>
+
+      <div class="saving-advice">
+        <strong>💡 Little tip:</strong>
+        <p>${esc(selectedTip.advice)}</p>
+      </div>
+    </div>
+  `;
 }
 
 
