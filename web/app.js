@@ -1,4 +1,3 @@
-
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -334,8 +333,7 @@ async function loadCalendar() {
   // Weekday HTML
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => <div class="dow">${d}</div>).join('');
-
+  ].map(d => `<div class="dow">${d}</div>`).join('');
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
 
@@ -391,7 +389,7 @@ async function loadCalendar() {
     from = ymd(start);
     to = ymd(end);
 
-    label = Week: ${from} to ${to};
+    label = `Week: ${from} to ${to}`;
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -408,7 +406,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(/api/expenses?from=${from}&to=${to}),
+    api(`/api/expenses?from=${from}&to=${to}`),
     getSummary()
   ]);
 
