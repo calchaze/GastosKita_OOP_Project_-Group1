@@ -30,6 +30,52 @@ body {
 }
 
 /* =========================
+   ANIMATION KEYFRAMES
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
    WELCOME PAGE
 ========================= */
 
@@ -45,6 +91,11 @@ body {
     position: relative;
     overflow: hidden;
     padding: 20px;
+}
+
+#welcome .glass-box,
+#userWelcome .glass-box {
+    animation: slideUp 0.8s ease both;
 }
 
 /* =========================
@@ -67,6 +118,7 @@ body {
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
+    animation: slideDown 0.5s ease both;
 }
 
 .nav-brand {
@@ -113,11 +165,12 @@ body:has(#app:not(.hidden)) .nav-links {
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
 }
 
 .nav-links button:hover {
     background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 .nav-links button.active {
@@ -153,13 +206,14 @@ body:has(#app:not(.hidden)) .nav-links {
     color: #fff;
     cursor: pointer;
     font-size: 22px;
+    transition: transform 0.25s ease;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.05);
+    transform: rotate(15deg) scale(1.1);
 }
 
-/* LOG OUT BUTTON (only shown after logging in) */
+/* LOG OUT BUTTON */
 
 .logout-btn {
     display: none;
@@ -252,7 +306,6 @@ body.dark-mode #userWelcome h1 {
     display: block;
 }
 
-/* Full logo (with GastosKita name) on the Welcome page */
 .logo-full {
     width: 300px;
     max-width: 100%;
@@ -262,7 +315,6 @@ body.dark-mode #userWelcome h1 {
     margin-bottom: 10px;
 }
 
-/* Dark mode: use a lighter-text version of the logo */
 body.dark-mode .logo-full {
     content: url("logo-dark.png");
 }
@@ -313,6 +365,7 @@ body.dark-mode .logo-full {
     flex-direction: column;
     gap: 14px;
     text-align: center;
+    animation: popIn 0.6s ease both;
 }
 
 .login-box h2 {
@@ -360,10 +413,21 @@ body.dark-mode .logo-full {
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
 .btn:hover {
     filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: scale(0.96);
 }
 
 .btn.big {
@@ -434,6 +498,15 @@ h2 {
     border-radius: 12px;
     padding: 18px;
     text-align: center;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    animation: slideUp 0.5s ease both;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(46, 125, 50, 0.16);
 }
 
 .card span {
@@ -458,7 +531,7 @@ h2 {
     height: 100%;
     width: 0;
     background: var(--green);
-    transition: width 0.4s;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .witty {
@@ -468,6 +541,7 @@ h2 {
     background: var(--light);
     border-radius: 10px;
     padding: 12px;
+    animation: popIn 0.5s ease both;
 }
 
 /* =========================
@@ -500,6 +574,16 @@ select {
     border: 1px solid #bbb;
     border-radius: 8px;
     font-size: 15px;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
 }
 
 .info {
@@ -555,6 +639,7 @@ th.r {
     padding: 14px;
     max-height: 520px;
     overflow: auto;
+    animation: slideUp 0.5s ease both;
 }
 
 .summary h3 {
@@ -599,6 +684,15 @@ th.r {
     padding: 4px;
     cursor: pointer;
     font-size: 15px;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.18);
 }
 
 .day small {
@@ -647,6 +741,7 @@ th.r {
 .bar-row .fill {
     height: 100%;
     background: var(--green);
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bar-row .val {
@@ -658,9 +753,19 @@ th.r {
 .suggestion {
     background: var(--light);
     border-radius: 12px;
-    padding: 14px 18px;
+    padding: 20px;
     margin-top: 24px;
-    white-space: pre-line;
+    white-space: normal;
+    animation: fadeIn 0.6s ease both;
+}
+
+.suggestion h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.suggestion #brTip {
+    line-height: 1.6;
 }
 
 /* =========================
@@ -684,6 +789,7 @@ th.r {
     max-width: 420px;
     text-align: center;
     border-top: 8px solid var(--green);
+    animation: popIn 0.3s ease both;
 }
 
 #popup.warn .box {
@@ -802,7 +908,6 @@ th.r {
     }
 }
 
-
 /* =========================
    MAIN SYSTEM DARK MODE
 ========================= */
@@ -812,7 +917,6 @@ body.dark-mode {
     color: #e8eee9;
 }
 
-/* Main content */
 body.dark-mode #app {
     background: #121a14;
 }
@@ -821,12 +925,10 @@ body.dark-mode main {
     color: #e8eee9;
 }
 
-/* Navigation */
 body.dark-mode .welcome-navbar {
     background: rgba(20, 37, 26, 0.97);
 }
 
-/* Headings */
 body.dark-mode h2,
 body.dark-mode h3 {
     color: #ffffff;
@@ -840,6 +942,10 @@ body.dark-mode .card {
 
 body.dark-mode .card span {
     color: #cbd8ce;
+}
+
+body.dark-mode .card:hover {
+    box-shadow: 0 10px 24px rgba(129, 199, 132, 0.12);
 }
 
 /* Progress bar */
@@ -976,4 +1082,19 @@ body.dark-mode .switch-text a {
 
 body.dark-mode .logout-btn {
     background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
