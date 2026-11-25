@@ -324,7 +324,7 @@ async function loadCalendar() {
     1
   ).toLocaleString('en-US', {
     month: 'long',
-      year: 'numeric'
+    year: 'numeric'
   });
 
   const totals = await api(
@@ -334,7 +334,7 @@ async function loadCalendar() {
   // Weekday HTML template literal
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => `<div class="dow">${d}</div>`).join('');
+  ].map(d => <div class="dow">${d}</div>).join('');
 
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
