@@ -1,4 +1,3 @@
-
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -331,7 +330,7 @@ async function loadCalendar() {
     '/api/daily?month=' + monthKey(cal.y, cal.m)
   );
 
-  // Weekday HTML template literal
+  // FIXED: Weekday HTML template literal
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
   ].map(d => <div class="dow">${d}</div>).join('');
