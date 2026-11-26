@@ -108,15 +108,16 @@ Switch between light and dark themes for a more comfortable viewing experience.
 
 ## 🧩 OOP Concepts
 
-GastosKita applies Object-Oriented Programming concepts in organizing its Java backend.
+GastosKita applies Object-Oriented Programming principles throughout its Java backend to organize expense management, promote code reusability, and support category-specific operations.
 
-| Concept | Implementation |
+| **OOP Principle** | **How It Is Applied in GastosKita** |
 |---|---|
-| **Encapsulation** | Organizing data and related methods within classes. |
-| **Inheritance** | Expense category classes build upon the common `Expense` class. |
-| **Polymorphism** | Supporting different expense types through their shared expense structure. |
-| **Factory Design Pattern** | `ExpenseFactory` handles the creation of expense objects. |
-| **Exception Handling** | `InvalidInputException` handles invalid input scenarios. |
+| **Abstraction** | `Expense` is declared as an `abstract` base class containing shared expense properties (`id`, `amount`, `description`, and `date`) and abstract methods (`getCategoryName()` and `getSavingTip()`) that define the required behaviors for all expense categories. |
+| **Encapsulation** | The `Expense` class restricts direct access to its fields using `private` and `final` modifiers where appropriate, providing controlled access through getters and `setId()`. Its constructor also validates expense information before assigning values. |
+| **Inheritance** | Specialized expense classes—`FoodExpense`, `TransportationExpense`, `ShoppingExpense`, `EntertainmentExpense`, and `OthersExpense`—extend `Expense`, inheriting its shared properties, methods, and constructor validation through `super()`. |
+| **Polymorphism** | The five expense subclasses override `getCategoryName()` and `getSavingTip()` to provide category-specific names and randomized saving suggestions while remaining compatible with the common `Expense` type. |
+| **Factory Design Pattern** | `ExpenseFactory` centralizes expense object creation through its static `create()` method, using a `switch` statement to instantiate the appropriate subclass based on the selected category and return it as an `Expense` object. |
+| **Exception Handling** | The custom checked exception `InvalidInputException`, which extends Java's `Exception` class, handles invalid expense amounts, empty descriptions, missing dates, and null or unrecognized expense categories by providing specific error messages. |
 
 ## 🛠️ Technologies Used
 
@@ -328,7 +329,7 @@ GastosKita was developed through the collaboration of the following team members
 
 | Team Member | Role |
 |---|---|
-| **Albuñán, Haze Darel L.** | UI/UX Designer & Frontend Developer |
+| **Albuñan, Haze Darel L.** | UI/UX Designer & Frontend Developer |
 | **Epa, Camille P.** | Project Lead & Docs Architect |
 | **Manalo, Steve Nash E.** | Lead Backend & OOP Engineer |
 
