@@ -1,3 +1,4 @@
+
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -282,10 +283,22 @@ $('#clearBudgetBtn').onclick = () => {
 
   loadBudget().catch(e => popup(e.message, 'bad', 'Error'));
 
+  const wittyMessages = [
+    "Budget cleared! Your wallet just got a fresh start. Don't let your gastos take over again! 😂",
+    "And just like that, your budget is gone! Time to give your wallet a new game plan. 💸",
+    "Starting from zero? No worries! Even your wallet deserves a reset sometimes. Just remember to budget wisely! 😉",
+    "Your budget has officially left the chat. Set a new one before your gastos go wild! 😭",
+    "Fresh start unlocked! Your wallet is ready for another budgeting adventure. Good luck! 💚"
+  ];
+
+  const randomMessage = wittyMessages[
+    Math.floor(Math.random() * wittyMessages.length)
+  ];
+
   popup(
-    'Your budget was cleared. Set a new one anytime.',
+    randomMessage,
     '',
-    'Budget cleared'
+    'Budget Cleared! 💸'
   );
 };
 
@@ -559,7 +572,7 @@ async function loadBreakdown() {
   const category = highest.name;
   const tips = savingTips[category] || [
     {
-      joke: "Your wallet has something to say about these expenses!",
+      joke: "Te, clear budget na Your wallet has something to say about these expenses!",
       advice: "Review your spending and identify purchases you can reduce or avoid."
     }
   ];
