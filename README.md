@@ -334,10 +334,12 @@ GastosKita was developed through the collaboration of the following team members
 
 ## 🙏 Acknowledgment
 
-We would like to express our heartfelt appreciation to our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS), for sharing valuable knowledge and guiding us throughout the development of GastosKita. We also extend our thanks to our classmates and fellow students who contributed their insights, suggestions, and feedback, helping us shape a system that encourages smarter spending and better financial habits.
+This project would not have been possible without the guidance and support of our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS). The knowledge and insights shared throughout the course helped us transform our understanding of Java and Object-Oriented Programming into a functional application. We also extend our appreciation to our classmates and fellow students who shared their suggestions and feedback, helping us make GastosKita more relevant to the everyday financial needs of students.
 
 ---
 
-<p align="center">
-  *Turning code into smarter spending, one peso at a time — proudly built by **Team 1 – GastosKita***
-</p>
+## Thank You!
+
+Thank you for exploring **GastosKita**! More than an expense tracker, this project reflects our goal of making budgeting easier and encouraging students to become more mindful of their financial decisions. We hope it inspires better spending habits, one small choice at a time.
+
+We code the system, you make every peso count — proudly built by Team 1 – GastosKita
