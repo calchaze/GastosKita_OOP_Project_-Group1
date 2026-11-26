@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
+  <img src="web/header.png" width="80%" alt="GastosKita - Make Every Peso Count">
 </p>
 
 <h1 align="center">💸 GastosKita</h1>
@@ -36,7 +36,7 @@
 
 ## 📌 About GastosKita
 
-*GastosKita* is a student-focused budgeting and expense tracking application designed to help users become more aware of their spending habits and manage their money more effectively.
+**GastosKita** is a student-focused budgeting and expense tracking application designed to help users become more aware of their spending habits and manage their money more effectively.
 
 The system allows students to record expenses, organize transactions, set budgets, and monitor their spending through an organized and user-friendly interface.
 
@@ -112,11 +112,11 @@ GastosKita applies Object-Oriented Programming concepts in organizing its Java b
 
 | Concept | Implementation |
 |---|---|
-| *Encapsulation* | Organizing data and related methods within classes. |
-| *Inheritance* | Expense category classes build upon the common Expense class. |
-| *Polymorphism* | Supporting different expense types through their shared expense structure. |
-| *Factory Design Pattern* | ExpenseFactory handles the creation of expense objects. |
-| *Exception Handling* | InvalidInputException handles invalid input scenarios. |
+| **Encapsulation** | Organizing data and related methods within classes. |
+| **Inheritance** | Expense category classes build upon the common `Expense` class. |
+| **Polymorphism** | Supporting different expense types through their shared expense structure. |
+| **Factory Design Pattern** | `ExpenseFactory` handles the creation of expense objects. |
+| **Exception Handling** | `InvalidInputException` handles invalid input scenarios. |
 
 ## 🛠️ Technologies Used
 
@@ -169,7 +169,7 @@ Explore the GastosKita interface and see how its features help students manage t
 
 ## 📁 Project Structure
 
-text
+```text
 GastosKita_Group1/
 │
 ├── database/
@@ -228,6 +228,7 @@ GastosKita_Group1/
 │   └── set-budget.png
 │
 └── README.md
+```
 
 ## 🚀 Getting Started
 
@@ -246,29 +247,34 @@ Make sure you have installed:
 
 Open your terminal and run:
 
+```bash
 git clone https://github.com/calchaze/GastosKita_OOP_Project_-Group1.git
+```
 
 Navigate to the project directory:
 
+```bash
 cd GastosKita_OOP_Project_-Group1
+```
 
 ### 2. Set Up the Database
 
 1. Open the XAMPP Control Panel.
-2. Start *MySQL*.
-3. Open phpMyAdmin at http://localhost/phpmyadmin.
-4. Create the database using the database name configured in DBConnection.java.
+2. Start **MySQL**.
+3. Open phpMyAdmin at `http://localhost/phpmyadmin`.
+4. Create the database using the database name configured in `DBConnection.java`.
 5. Select the database you created.
-6. Open the *Import* tab.
-7. Choose the database/schema.sql file.
-8. Click *Import* or *Go* to execute the SQL file.
+6. Open the **Import** tab.
+7. Choose the `database/schema.sql` file.
+8. Click **Import** or **Go** to execute the SQL file.
 
 ### 3. Configure the Database Connection
 
 Open:
 
-text
+```text
 src/DBConnection.java
+```
 
 Check the database connection settings and make sure these match your local MySQL configuration:
 
@@ -282,15 +288,19 @@ Check the database connection settings and make sure these match your local MySQ
 
 From the project root directory, open the terminal and run:
 
+```powershell
 javac -cp "lib/mysql-connector-j-26.7.0.jar" -d out src/*.java
+```
 
 ### 5. Run GastosKita
 
 Run the Java server:
 
+```powershell
 java -cp "out;lib/mysql-connector-j-26.7.0.jar" GastosKitaServer
+```
 
-Once the server starts, follow the local address and port configured in GastosKitaServer.java to open the application in your browser.
+Once the server starts, follow the local address and port configured in `GastosKitaServer.java` to open the application in your browser.
 
 ## 🔮 Future Improvements
 
@@ -308,15 +318,15 @@ GastosKita was developed through the collaboration of the following team members
 
 | Team Member | Role |
 |---|---|
-| *Albuñán, Haze Darel L.* | UI/UX Designer & Frontend Developer |
-| *Epa, Camille P.* | Project Lead & Docs Architect |
-| *Manalo, Steve Nash E.* | Lead Backend & OOP Engineer |
+| **Albuñán, Haze Darel L.** | UI/UX Designer & Frontend Developer |
+| **Epa, Camille P.** | Project Lead & Docs Architect |
+| **Manalo, Steve Nash E.** | Lead Backend & OOP Engineer |
 
 ## 🙌 Acknowledgment
 
 This project was developed as part of our Object-Oriented Programming coursework. We would like to acknowledge our instructor for the guidance and feedback throughout the development process.
 
-We also thank everyone who contributed their time, effort, and ideas to make GastosKita possible.
+Most importantly, we thank everyone who contributed their time, effort, and ideas to make GastosKita possible.
 
 ---
 
