@@ -1,288 +1,332 @@
-# 💸 GastosKita
-### "Track your gastos, take control of your budget."
+<p align="center">
+  <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
+</p>
 
-**A Java-Based Personal Budgeting and Expense-Tracking System**
+<h1 align="center">💸 GastosKita</h1>
 
 <p align="center">
-  <b>Manage your money. Understand your spending. Build better habits.</b>
+  <strong>Make Every Peso Count.</strong>
+  <br>
+  A Student Budgeting and Expense Tracking System
+</p>
+
+<p align="center">
+  Helping students build better spending habits, manage their budgets, and stay on top of their expenses.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-Backend-orange?style=flat-square&logo=openjdk&logoColor=white">
+  <img src="https://img.shields.io/badge/HTML5-Frontend-E34F26?style=flat-square&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-Styling-1572B6?style=flat-square&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-Interactive-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square&logo=mysql&logoColor=white">
+</p>
+
+<p align="center">
+  <a href="#-about-gastoskita">About</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-oop-concepts">OOP Concepts</a> •
+  <a href="#-technologies-used">Technologies</a> •
+  <a href="#-application-showcase">Showcase</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-meet-the-team">Team</a>
 </p>
 
 ---
 
-## 📑 Table of Contents
+## 📌 About GastosKita
 
-- [Project Overview](#-project-overview)
-- [Project Objectives](#-project-objectives)
-- [System Features](#-system-features)
-- [OOP Principles Applied](#-oop-principles-applied)
-- [Technology Stack](#-technology-stack)
-- [Project Structure](#-project-structure)
-- [Database and System Architecture](#-database-and-system-architecture)
-- [How to Run the Project](#-how-to-run-the-project)
-- [Screenshots and System Preview](#-screenshots-and-system-preview)
-- [Known Limitations and Future Improvements](#-known-limitations-and-future-improvements)
-- [Target Users](#-target-users)
-- [Team Members](#-team-members)
-- [Acknowledgment](#-acknowledgment)
+*GastosKita* is a student-focused budgeting and expense tracking application designed to help users become more aware of their spending habits and manage their money more effectively.
 
----
+The system allows students to record expenses, organize transactions, set budgets, and monitor their spending through an organized and user-friendly interface.
 
-## 🎯 Project Overview
+With practical budgeting tools and friendly reminders, GastosKita encourages students to make smarter financial decisions and develop responsible money management habits.
 
-**GastosKita** is a Java-based budgeting and expense-tracking system designed to help students and individuals manage their personal finances more effectively. It provides a convenient way to record expenses, organize transactions, monitor spending habits, and make better financial decisions.
+## ✨ Key Features
 
-### The Problem We Solve
+<details>
+<summary><strong>💸 Expense Tracking</strong></summary>
 
-Managing money can be challenging, especially for students who rely on a limited daily or monthly allowance. Without proper expense tracking, it becomes difficult to identify unnecessary spending, maintain a budget, and set aside money for savings.
+Record daily expenses and organize them into different categories:
 
-### Why GastosKita?
+- Food
+- Transportation
+- Shopping
+- Entertainment
+- Others
 
-GastosKita aims to make financial management more accessible and engaging. Instead of manually keeping track of every purchase, users can use the system to monitor their expenses, understand their spending patterns, and receive helpful saving suggestions.
+</details>
 
-What makes GastosKita different is its combination of practical financial tools and witty, relatable budget reminders that encourage users to become more responsible with their money.
+<details>
+<summary><strong>📜 Expense History</strong></summary>
 
----
+View previously recorded expenses and keep track of past transactions.
 
-## ✨ System Features
+</details>
 
-| Feature | Description |
+<details>
+<summary><strong>🎯 Budget Management</strong></summary>
+
+Set a budget and monitor your spending to stay within your planned financial limit.
+
+</details>
+
+<details>
+<summary><strong>📅 Expense Calendar</strong></summary>
+
+View expenses according to their recorded dates through a calendar interface.
+
+</details>
+
+<details>
+<summary><strong>📊 Spending Breakdown</strong></summary>
+
+Understand where your money goes through a visual breakdown of expenses by category.
+
+</details>
+
+<details>
+<summary><strong>💡 Saving Suggestions</strong></summary>
+
+Get helpful suggestions that encourage better spending habits and smarter budgeting decisions.
+
+</details>
+
+<details>
+<summary><strong>🔔 Witty Budget Notifications</strong></summary>
+
+Receive friendly and humorous notifications that remind users to stay mindful of their spending.
+
+</details>
+
+<details>
+<summary><strong>🌗 Light and Dark Mode</strong></summary>
+
+Switch between light and dark themes for a more comfortable viewing experience.
+
+</details>
+
+## 🧩 OOP Concepts
+
+GastosKita applies Object-Oriented Programming concepts in organizing its Java backend.
+
+| Concept | Implementation |
 |---|---|
-| 🧾 **Expense Tracking** | Allows users to record and monitor their daily expenses. |
-| 📜 **Expense History** | Provides access to previously recorded transactions to help users track their spending activities. |
-| 💡 **Saving Suggestions** | Provides recommendations on where users can reduce unnecessary expenses. |
-| 🗂️ **Expense Categories** | Organizes transactions into categories such as Food, Transportation, Shopping, and Entertainment. |
-| 📊 **Spending Breakdown** | Presents an overview of expenses to help users identify their biggest spending categories. |
-| 😆 **Witty Budget Popup Messages** | Displays funny, relatable, and encouraging messages based on certain budget situations. |
+| *Encapsulation* | Organizing data and related methods within classes. |
+| *Inheritance* | Expense category classes build upon the common Expense class. |
+| *Polymorphism* | Supporting different expense types through their shared expense structure. |
+| *Factory Design Pattern* | ExpenseFactory handles the creation of expense objects. |
+| *Exception Handling* | InvalidInputException handles invalid input scenarios. |
 
-### 💬 A Little Humor Goes a Long Way
-
-GastosKita makes budgeting less stressful through witty reminders that encourage users to think twice before spending.
-
-Examples of budget reminders:
-
-- "Sis, set na budget para di ka mag-overspend!"
-- "A budget a day keeps the 'asan ang pera ko?' away."
-- "I did my best, but I guess my best wasn't good enough... pati budget ko."
-- "Wallet check: mas marami pang hangin kaysa pera."
-
----
-
-## 🧱 OOP Principles Applied
-
-GastosKita is developed using Java and follows an Object-Oriented Programming approach. The following principles serve as the foundation for organizing the system's data and functionality.
-
-| OOP Principle | Application in GastosKita |
-|---|---|
-| **Encapsulation** | Organizes and protects data related to users, income, expenses, and budgets through controlled access to class attributes and methods. |
-| **Abstraction** | Focuses on essential operations such as recording expenses, managing budgets, and viewing spending information while hiding unnecessary implementation details. |
-| **Inheritance** | Allows related classes to share common attributes and behaviors when applicable, reducing repeated code. |
-| **Polymorphism** | Allows related objects to implement or override behaviors differently while maintaining a common interface. |
-
-*Note: The specific Java classes and methods demonstrating each principle should be identified from the finalized source code before submission.*
-
----
-
-## 🛠️ Technology Stack
+## 🛠️ Technologies Used
 
 | Technology | Purpose |
 |---|---|
-| **Java** | Main programming language used for system development and application logic. |
-| **HTML** | Structures the web interface. |
-| **CSS** | Handles the visual presentation and styling of the interface. |
-| **JavaScript** | Supports frontend interactions and functionality. |
-| **Database** | Stores and manages system-related information. |
-| **Git & GitHub** | Used for version control, source code management, and team collaboration. |
+| Java | Backend development and OOP implementation |
+| HTML5 | Web page structure |
+| CSS3 | Interface styling and layout |
+| JavaScript | Frontend interactions |
+| MySQL | Database management |
+| JDBC | Java-to-MySQL connectivity |
+| MySQL Connector/J | MySQL JDBC driver |
+| XAMPP | Local MySQL database environment |
+| phpMyAdmin | Database administration |
+| Visual Studio Code | Development environment |
+| Git and GitHub | Version control and collaboration |
 
-*The exact database engine, Java libraries, and frameworks should be specified according to the project's actual configuration.*
+## 🖥️ Application Showcase
 
----
+Explore the GastosKita interface and see how its features help students manage their expenses and budgets.
 
-## 📂 Project Structure
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>📊 Spending Breakdown</strong><br><br>
+      <img src="screenshots/breakdown.png" width="100%" alt="GastosKita Spending Breakdown">
+    </td>
+    <td align="center" width="50%">
+      <strong>📜 Expense History</strong><br><br>
+      <img src="screenshots/history.png" width="100%" alt="GastosKita Expense History">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>📅 Expense Calendar</strong><br><br>
+      <img src="screenshots/calendar.png" width="100%" alt="GastosKita Calendar">
+    </td>
+    <td align="center" width="50%">
+      <strong>💸 Add Expense</strong><br><br>
+      <img src="screenshots/add-expense.png" width="100%" alt="GastosKita Add Expense">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <strong>🎯 Budget Management</strong><br><br>
+      <img src="screenshots/set-budget.png" width="80%" alt="GastosKita Budget Management">
+    </td>
+  </tr>
+</table>
 
-The repository is organized into several directories that contain the project's source code, database resources, libraries, compiled files, and web application components.
+## 📁 Project Structure
 
-```text
-GastosKita_OOP_Project_-Group1/
+text
+GastosKita_Group1/
 │
-├── database/       # Database-related files
+├── database/
+│   └── schema.sql
 │
-├── lib/            # External libraries and dependencies
+├── lib/
+│   └── mysql-connector-j-26.7.0.jar
 │
-├── out/            # Compiled output files
+├── out/
+│   ├── Budget$Status.class
+│   ├── Budget.class
+│   ├── DBConnection.class
+│   ├── EntertainmentExpense.class
+│   ├── Expense.class
+│   ├── ExpenseCategory.class
+│   ├── ExpenseDAO.class
+│   ├── ExpenseFactory.class
+│   ├── FoodExpense.class
+│   ├── GastosKitaServer.class
+│   ├── InvalidInputException.class
+│   ├── PopupMessages$1.class
+│   ├── PopupMessages.class
+│   ├── ShoppingExpense.class
+│   └── TransportationExpense.class
 │
-├── src/            # Java source code
+├── src/
+│   ├── Budget.java
+│   ├── DBConnection.java
+│   ├── EntertainmentExpense.java
+│   ├── Expense.java
+│   ├── ExpenseCategory.java
+│   ├── ExpenseDAO.java
+│   ├── ExpenseFactory.java
+│   ├── FoodExpense.java
+│   ├── GastosKitaServer.java
+│   ├── InvalidInputException.java
+│   ├── OthersExpense.java
+│   ├── PopupMessages.java
+│   ├── ShoppingExpense.java
+│   └── TransportationExpense.java
 │
-├── web/            # Web interface and frontend resources
+├── web/
+│   ├── app.js
+│   ├── header.png
+│   ├── index.html
+│   ├── logo-dark.png
+│   ├── logo-icon.png
+│   ├── logo.png
+│   └── style.css
 │
-├── t-backup/       # Backup files
+├── screenshots/
+│   ├── breakdown.png
+│   ├── history.png
+│   ├── calendar.png
+│   ├── add-expense.png
+│   └── set-budget.png
 │
-└── README.md       # Project documentation
-```
+└── README.md
 
----
+## 🚀 Getting Started
 
-## 🗄️ Database and System Architecture
-
-GastosKita includes a dedicated `database/` directory for its database-related resources and separates its Java source code from its web interface.
-
-The system is intended to support the management of financial information, including income, expenses, categories, and budget-related records.
-
-**System Architecture**
-
-```text
-             USER
-               |
-               v
-        WEB INTERFACE
-               |
-               v
-        JAVA APPLICATION
-               |
-       +-------+-------+
-       |       |       |
-       v       v       v
-    Income  Expenses  Budget
-       |       |       |
-       +-------+-------+
-               |
-               v
-           DATABASE
-               |
-               v
-       FINANCIAL RECORDS
-```
-
-*Conceptual system overview. Update this diagram to reflect the actual application flow and database integration.*
-
----
-
-## 🚀 How to Run the Project
+Follow these instructions to set up and run GastosKita on your local machine.
 
 ### Prerequisites
 
-Before running GastosKita, prepare the following:
+Make sure you have installed:
 
-- Java Development Kit (JDK)
-- Java-compatible IDE or development environment
-- Git
-- Required project libraries
-- Configured database environment, if required
+- [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/)
+- [XAMPP](https://www.apachefriends.org/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Git](https://git-scm.com/)
 
 ### 1. Clone the Repository
 
-```bash
+Open your terminal and run:
+
 git clone https://github.com/calchaze/GastosKita_OOP_Project_-Group1.git
-```
 
-### 2. Open the Project
+Navigate to the project directory:
 
-Open the cloned `GastosKita_OOP_Project_-Group1` folder using your preferred Java IDE.
+cd GastosKita_OOP_Project_-Group1
 
-### 3. Configure Dependencies
+### 2. Set Up the Database
 
-Ensure that the required libraries and database configuration are properly set up.
+1. Open the XAMPP Control Panel.
+2. Start *MySQL*.
+3. Open phpMyAdmin at http://localhost/phpmyadmin.
+4. Create the database using the database name configured in DBConnection.java.
+5. Select the database you created.
+6. Open the *Import* tab.
+7. Choose the database/schema.sql file.
+8. Click *Import* or *Go* to execute the SQL file.
 
-### 4. Run the Application
+### 3. Configure the Database Connection
 
-Locate the main Java entry point inside the `src/` directory and execute it using your IDE.
+Open:
 
-*The exact main class, database setup commands, and execution procedure should be added after verifying the project's configuration.*
+text
+src/DBConnection.java
 
----
+Check the database connection settings and make sure these match your local MySQL configuration:
 
-## 📸 Screenshots and System Preview
+- Database name
+- MySQL host
+- MySQL port
+- Username
+- Password
 
-This section showcases the actual interface and functionality of GastosKita.
+### 4. Compile the Java Files
 
-### Application Interface
+From the project root directory, open the terminal and run:
 
-**Dashboard**
+javac -cp "lib/mysql-connector-j-26.7.0.jar" -d out src/*.java
 
-> Add your dashboard screenshot here.
+### 5. Run GastosKita
 
-### Expense Management
+Run the Java server:
 
-**Add Expenses**
+java -cp "out;lib/mysql-connector-j-26.7.0.jar" GastosKitaServer
 
-> Add your expense-entry screenshot here.
+Once the server starts, follow the local address and port configured in GastosKitaServer.java to open the application in your browser.
 
-**Expense History**
+## 🔮 Future Improvements
 
-> Add your transaction-history screenshot here.
+GastosKita may be further improved through:
 
-### Budget and Financial Insights
+- More detailed spending analytics.
+- Additional budgeting tools.
+- Improved saving recommendations.
+- Enhanced user experience and accessibility.
+- Additional features that support responsible financial habits.
 
-**Spending Breakdown**
+## 👥 Meet the Team
 
-> Add your spending breakdown screenshot here.
+GastosKita was developed through the collaboration of the following team members.
 
-**Saving Suggestions**
-
-> Add your saving-suggestion screenshot here.
-
-**Witty Budget Popup Messages**
-
-> Add your budget reminder screenshot here.
-
----
-
-## ⚠️ Known Limitations and Future Improvements
-
-### Known Limitations
-
-- Users need to consistently record their expenses to maintain accurate spending information.
-- Saving suggestions depend on the financial information available in the system.
-- Budget monitoring is limited to the features currently implemented.
-- The system is primarily designed for personal budgeting and expense monitoring.
-
-### Future Improvements
-
-- Add more detailed financial reports and monthly summaries.
-- Introduce customizable savings goals.
-- Improve budget notifications and spending alerts.
-- Add additional expense categories and filtering options.
-- Enhance the user interface for a more accessible experience.
-- Expand financial insights to help users make better budgeting decisions.
-
----
-
-## 👥 Target Users
-
-| Target User | Purpose |
+| Team Member | Role |
 |---|---|
-| **Students** | Helps manage daily allowances, monitor expenses, and develop better saving habits. |
-| **Individuals** | Helps organize personal finances, control spending, and maintain budgets. |
+| *Albuñán, Haze Darel L.* | UI/UX Designer & Frontend Developer |
+| *Epa, Camille P.* | Project Lead & Docs Architect |
+| *Manalo, Steve Nash E.* | Lead Backend & OOP Engineer |
+
+## 🙌 Acknowledgment
+
+This project was developed as part of our Object-Oriented Programming coursework. We would like to acknowledge our instructor for the guidance and feedback throughout the development process.
+
+We also thank everyone who contributed their time, effort, and ideas to make GastosKita possible.
 
 ---
 
-## 👩‍💻 Team Members
+<p align="center">
+  <strong>GastosKita — Make Every Peso Count. 💚</strong>
+  <br>
+  <sub>Track your gastos. Take control of your budget.</sub>
+</p>
 
-### Group 1 – GastosKita
-
-| Member | Role | Contributions |
-|---|---|---|
-| Haze | UI/UX Designer | Designed the overall user interface and visual layout of the system. |
-| Steve | Backend Developer | Handled the core backend development and implemented the system's primary logic. |
-| Camille | Feature Developer | Implemented and integrated the system's interactive features and functional modules. |
-
-*Update the team list and contributions to reflect the final division of responsibilities.*
-
----
-
-## 🙏 Acknowledgment
-
-We would like to express our sincere gratitude to our Object-Oriented Programming instructor for the guidance, knowledge, and support provided throughout the development of GastosKita.
-
-We also appreciate the effort and collaboration of every group member who contributed their time, skills, and ideas to make this project possible.
-
----
-
-## 💖 Thank You!
-
-Thank you for visiting **GastosKita!**
-
-We hope this project encourages students and individuals to become more mindful of their spending, develop responsible financial habits, and understand the importance of managing their money wisely.
-
-**Remember: Every peso counts, so spend wisely!**
-
-Made with ☕ and Java by **Group 1 – GastosKita**.
+<p align="center">
+  <a href="#-gastoskita">Back to Top ↑</a>
+</p>
+img.shields.io
