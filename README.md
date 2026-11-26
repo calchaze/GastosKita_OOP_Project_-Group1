@@ -329,4 +329,3 @@ We also thank everyone who contributed their time, effort, and ideas to make Gas
 <p align="center">
   <a href="#-gastoskita">Back to Top ↑</a>
 </p>
-img.shields.io
