@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="web/header.png" width="80%" alt="GastosKita - Make Every Peso Count">
+  <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
 </p>
 
 <h1 align="center">💸 GastosKita</h1>
