@@ -2,7 +2,7 @@
   <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
 </p>
 
-<h1 align="center">💸 GastosKita</h1>
+<h1 align="center">GastosKita</h1>
 
 <p align="center">
   <strong>Make Every Peso Count.</strong>
@@ -136,33 +136,43 @@ GastosKita applies Object-Oriented Programming concepts in organizing its Java b
 
 ## 🖥️ Application Showcase
 
-Explore the GastosKita interface and see how its features help students manage their expenses and budgets.
+Explore the six main pages of **GastosKita**, each designed to help students track expenses, manage budgets, and develop better financial habits.
 
 <table>
   <tr>
     <td align="center" width="50%">
-      <strong>📊 Spending Breakdown</strong><br><br>
-      <img src="screenshots/breakdown.png" width="100%" alt="GastosKita Spending Breakdown">
+      <strong>🏠 Dashboard</strong><br><br>
+      <img src="screenshots/dashboard.png" width="100%" alt="GastosKita Dashboard"><br>
+      <sub>View your monthly budget, total expenses, remaining balance, and budget progress at a glance.</sub>
+    </td>
+    <td align="center" width="50%">
+      <strong>🎯 Set Budget</strong><br><br>
+      <img src="screenshots/set-budget.png" width="100%" alt="GastosKita Set Budget"><br>
+      <sub>Set your monthly spending limit and monitor your current budget information.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>💸 Add Expense</strong><br><br>
+      <img src="screenshots/add-expense.png" width="100%" alt="GastosKita Add Expense"><br>
+      <sub>Record purchases by entering the amount, category, description, and date.</sub>
     </td>
     <td align="center" width="50%">
       <strong>📜 Expense History</strong><br><br>
-      <img src="screenshots/history.png" width="100%" alt="GastosKita Expense History">
+      <img src="screenshots/history.png" width="100%" alt="GastosKita Expense History"><br>
+      <sub>Review, search, filter, and manage previously recorded transactions.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <strong>📅 Expense Calendar</strong><br><br>
-      <img src="screenshots/calendar.png" width="100%" alt="GastosKita Calendar">
+      <strong>📅 Calendar</strong><br><br>
+      <img src="screenshots/calendar.png" width="100%" alt="GastosKita Calendar"><br>
+      <sub>View daily spending and recorded transactions through a calendar interface.</sub>
     </td>
     <td align="center" width="50%">
-      <strong>💸 Add Expense</strong><br><br>
-      <img src="screenshots/add-expense.png" width="100%" alt="GastosKita Add Expense">
-    </td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2">
-      <strong>🎯 Budget Management</strong><br><br>
-      <img src="screenshots/set-budget.png" width="80%" alt="GastosKita Budget Management">
+      <strong>📊 Spending Breakdown</strong><br><br>
+      <img src="screenshots/breakdown.png" width="100%" alt="GastosKita Spending Breakdown"><br>
+      <sub>Understand spending distribution by category and receive saving suggestions.</sub>
     </td>
   </tr>
 </table>
@@ -322,20 +332,12 @@ GastosKita was developed through the collaboration of the following team members
 | **Epa, Camille P.** | Project Lead & Docs Architect |
 | **Manalo, Steve Nash E.** | Lead Backend & OOP Engineer |
 
-## 🙌 Acknowledgment
+## 🙏 Acknowledgment
 
-This project was developed as part of our Object-Oriented Programming coursework. We would like to acknowledge our instructor for the guidance and feedback throughout the development process.
-
-Most importantly, we thank everyone who contributed their time, effort, and ideas to make GastosKita possible.
+We would like to express our heartfelt appreciation to our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS), for sharing valuable knowledge and guiding us throughout the development of GastosKita. We also extend our thanks to our classmates and fellow students who contributed their insights, suggestions, and feedback, helping us shape a system that encourages smarter spending and better financial habits.
 
 ---
 
 <p align="center">
-  <strong>GastosKita — Make Every Peso Count. 💚</strong>
-  <br>
-  <sub>Track your gastos. Take control of your budget.</sub>
-</p>
-
-<p align="center">
-  <a href="#-gastoskita">Back to Top ↑</a>
+  *Turning code into smarter spending, one peso at a time — proudly built by **Team 1 – GastosKita***
 </p>
