@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,6 @@
         <span>GastosKita</span>
     </div>
 
-    <!-- MAIN SYSTEM NAVIGATION -->
     <div id="sidebar" class="nav-links">
         <button data-page="dashboard" class="active">Dashboard</button>
         <button data-page="budget">Set Budget</button>
@@ -43,7 +43,6 @@
 
 </nav>
 
-
 <!-- WELCOME PAGE -->
 <section id="welcome">
     <div class="glass-box">
@@ -52,7 +51,6 @@
         <button id="startBtn" class="btn big">Get Started</button>
     </div>
 </section>
-
 
 <!-- LOGIN PAGE -->
 <section id="login" class="hidden">
@@ -86,7 +84,6 @@
     </form>
 </section>
 
-
 <!-- USER WELCOME PAGE -->
 <section id="userWelcome" class="hidden">
     <div class="glass-box">
@@ -96,7 +93,6 @@
         <button id="uwBtn" class="btn big">Go to Dashboard</button>
     </div>
 </section>
-
 
 <!-- MAIN SYSTEM -->
 <div id="app" class="hidden">
@@ -132,67 +128,278 @@
             <p id="dMessage" class="witty"></p>
         </section>
 
-
         <!-- SET BUDGET -->
         <section id="page-budget" class="page hidden">
-            <h2>Set / Check Budget</h2>
 
-            <form id="budgetForm" class="form inline">
-                <label>
-                    Monthly budget (₱)
-                    <input id="bAmount" type="number" step="0.01">
-                </label>
+            <div class="budget-header">
+                <div>
+                    <span class="budget-eyebrow">PLAN • MANAGE • SAVE</span>
+                    <h2>Manage Your Budget</h2>
+                    <p>Take control of your money by setting a monthly spending limit.</p>
+                </div>
 
-                <button class="btn" type="submit">Save Budget</button>
-            </form>
-
-            <div class="budget-actions">
-                <button id="clearBudgetBtn" type="button" class="btn danger wide">
-                    Clear Budget
-                </button>
+                <div class="budget-header-icon">💰</div>
             </div>
 
-            <p id="bInfo" class="info"></p>
-        </section>
+            <div class="budget-layout">
 
+                <!-- BUDGET FORM -->
+                <div class="budget-form-card">
+
+                    <div class="budget-card-heading">
+                        <div class="budget-heading-icon">🎯</div>
+
+                        <div>
+                            <h3>Monthly Budget</h3>
+                            <p>Set or update your spending limit.</p>
+                        </div>
+                    </div>
+
+                    <form id="budgetForm" class="form budget-form">
+
+                        <label>
+                            Monthly budget (₱)
+
+                            <div class="budget-input-wrap">
+                                <span class="budget-peso">₱</span>
+                                <input
+                                    id="bAmount"
+                                    type="number"
+                                    step="0.01"
+                                    min="0.01"
+                                    placeholder="Enter your monthly budget"
+                                    required
+                                >
+                            </div>
+                        </label>
+
+                        <button class="btn save-budget-btn" type="submit">
+                            <span>＋</span> Save Budget
+                        </button>
+
+                    </form>
+
+                    <div class="budget-information">
+
+                        <div class="budget-info-heading">
+                            <span>📊</span>
+                            <h3>Current Budget Information</h3>
+                        </div>
+
+                        <p id="bInfo" class="info">
+                            Your current budget information will appear here.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="clearBudgetBtn"
+                        type="button"
+                        class="btn danger wide clear-budget-btn"
+                    >
+                        Clear Budget
+                    </button>
+
+                </div>
+
+                <!-- BUDGET SIDE PANEL -->
+                <aside class="budget-side-panel">
+
+                    <!-- BUDGET REMINDER -->
+                    <div class="budget-reminder-card">
+
+                        <div class="budget-side-icon">💡</div>
+
+                        <h3>Budget Reminder</h3>
+
+                        <p>
+                            A budget helps you control your spending
+                            and avoid running out of money before the month ends.
+                        </p>
+
+                        <div class="budget-quote">
+                            "Don't just earn money. Learn how to manage it!"
+                        </div>
+
+                    </div>
+
+                    <!-- SMART BUDGET TIPS -->
+                    <div class="budget-tips-card">
+
+                        <div class="budget-tips-heading">
+                            <span>🌱</span>
+
+                            <div>
+                                <h3>Smart Budget Tips</h3>
+                                <p>Small habits make a big difference.</p>
+                            </div>
+                        </div>
+
+                        <div class="budget-tip-item">
+                            <span class="tip-number">01</span>
+
+                            <div>
+                                <strong>Set a Realistic Limit</strong>
+                                <p>Choose a budget that matches your available money.</p>
+                            </div>
+                        </div>
+
+                        <div class="budget-tip-item">
+                            <span class="tip-number">02</span>
+
+                            <div>
+                                <strong>Track Every Expense</strong>
+                                <p>Record your purchases to understand your spending.</p>
+                            </div>
+                        </div>
+
+                        <div class="budget-tip-item">
+                            <span class="tip-number">03</span>
+
+                            <div>
+                                <strong>Save for Later</strong>
+                                <p>Keep some money for emergencies and future needs.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+        </section>
 
         <!-- ADD EXPENSE -->
         <section id="page-add" class="page hidden">
-            <h2>Add Expense</h2>
 
-            <form id="addForm" class="form">
-                <label>
-                    Amount (₱)
-                    <input id="aAmount" type="number" step="0.01"
-                        placeholder="e.g. 150.50">
-                </label>
+            <div class="add-header">
+                <div>
+                    <h2>Add New Expense</h2>
+                    <p>Every peso counts. Keep track of where your money goes!</p>
+                </div>
 
-                <label>
-                    Category
-                    <select id="aCategory">
-                        <option>Food</option>
-                        <option>Transportation</option>
-                        <option>Shopping</option>
-                        <option>Entertainment</option>
-                        <option>Others</option>
-                    </select>
-                </label>
+                <div class="add-header-icon">💸</div>
+            </div>
 
-                <label>
-                    Description
-                    <input id="aDesc" type="text" maxlength="255"
-                        placeholder="e.g. Lunch at canteen">
-                </label>
+            <div class="add-expense-layout">
 
-                <label>
-                    Date
-                    <input id="aDate" type="date">
-                </label>
+                <!-- EXPENSE FORM -->
+                <div class="expense-form-card">
 
-                <button class="btn" type="submit">Save Expense</button>
-            </form>
+                    <div class="expense-card-heading">
+                        <div class="expense-heading-icon">📝</div>
+
+                        <div>
+                            <h3>Expense Details</h3>
+                            <p>Enter your purchase information below.</p>
+                        </div>
+                    </div>
+
+                    <form id="addForm" class="form add-expense-form">
+
+                        <label>
+                            Amount (₱)
+                            <input id="aAmount" type="number" step="0.01"
+                                placeholder="e.g. 150.50" required>
+                        </label>
+
+                        <label>
+                            Category
+                            <select id="aCategory" required>
+                                <option>Food</option>
+                                <option>Transportation</option>
+                                <option>Shopping</option>
+                                <option>Entertainment</option>
+                                <option>Others</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Description
+                            <input id="aDesc" type="text" maxlength="255"
+                                placeholder="e.g. Lunch at canteen" required>
+                        </label>
+
+                        <label>
+                            Date
+                            <input id="aDate" type="date" required>
+                        </label>
+
+                        <button class="btn save-expense-btn" type="submit">
+                            <span>＋</span> Save Expense
+                        </button>
+
+                    </form>
+                </div>
+
+                <!-- SIDE INFORMATION -->
+                <aside class="expense-side-panel">
+
+                    <div class="expense-info-card">
+                        <div class="side-card-icon">💡</div>
+
+                        <h3>Budget Reminder</h3>
+
+                        <p>
+                            Don't let small expenses sneak up on you!
+                            Record every purchase to keep your budget under control.
+                        </p>
+
+                        <div class="reminder-quote">
+                            "Small gastos, big impact. Track them before they add up!"
+                        </div>
+                    </div>
+
+                    <div class="expense-info-card category-guide">
+
+                        <h3>Expense Categories</h3>
+
+                        <div class="category-guide-item">
+                            <span>🍔</span>
+                            <div>
+                                <b>Food</b>
+                                <small>Meals, snacks, and drinks</small>
+                            </div>
+                        </div>
+
+                        <div class="category-guide-item">
+                            <span>🚌</span>
+                            <div>
+                                <b>Transportation</b>
+                                <small>Fare, fuel, and travel</small>
+                            </div>
+                        </div>
+
+                        <div class="category-guide-item">
+                            <span>🛍️</span>
+                            <div>
+                                <b>Shopping</b>
+                                <small>Clothes and personal items</small>
+                            </div>
+                        </div>
+
+                        <div class="category-guide-item">
+                            <span>🎮</span>
+                            <div>
+                                <b>Entertainment</b>
+                                <small>Games and leisure</small>
+                            </div>
+                        </div>
+
+                        <div class="category-guide-item">
+                            <span>📦</span>
+                            <div>
+                                <b>Others</b>
+                                <small>Other miscellaneous expenses</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
         </section>
-
 
         <!-- HISTORY -->
         <section id="page-history" class="page hidden">
@@ -214,7 +421,6 @@
 
             <p id="hTotal" class="muted"></p>
         </section>
-
 
         <!-- CALENDAR -->
         <section id="page-calendar" class="page hidden">
@@ -247,7 +453,6 @@
             </div>
         </section>
 
-
         <!-- BREAKDOWN -->
         <section id="page-breakdown" class="page hidden">
             <h2>Spending Breakdown &amp; Saving Suggestions</h2>
@@ -256,15 +461,12 @@
 
             <div class="suggestion">
                 <h3>Saving suggestion</h3>
-
-                <!-- Updated container for the redesigned suggestion -->
                 <div id="brTip"></div>
             </div>
         </section>
 
     </main>
 </div>
-
 
 <!-- WITTY POPUP -->
 <div id="popup" class="hidden">
@@ -274,7 +476,6 @@
         <button id="pClose" class="btn" type="button">OK</button>
     </div>
 </div>
-
 
 <script src="app.js"></script>
 
