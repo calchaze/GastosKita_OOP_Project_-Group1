@@ -263,7 +263,7 @@ This section showcases the actual interface and functionality of GastosKita.
 |---|---|---|
 | Haze | UI/UX Designer | Designed the overall user interface and visual layout of the system. |
 | Steve | Backend Developer | Handled the core backend development and implemented the system's primary logic. |
-| Camille | [Add Role] | [Add actual contributions.] |
+| Camille | Feature Developer | Implemented and integrated the system's interactive features and functional modules. |
 
 *Update the team list and contributions to reflect the final division of responsibilities.*
 
