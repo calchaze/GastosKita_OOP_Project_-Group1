@@ -1,4 +1,3 @@
-
 // ---------- helpers ----------
 const $ = s => document.querySelector(s);
 
@@ -33,7 +32,7 @@ async function api(path, opts) {
   return data;
 }
 
-const post = (path, obj) => api(path, {
+const post = (path, obj) => api('/api/expenses' === path ? path : path, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -73,8 +72,8 @@ const kindOf = st =>
 const CLEARED_KEY = 'gk_budget_cleared';
 
 const NO_BUDGET_MSGS = [
-  'No budget yet? Set one so your wallet has a game plan!',
-  "A budget a day keeps the ‘asan ang pera ko?’ away."
+  'Beh, mag-budget ka muna. Baka mas marami pang laman ang shopping cart mo kaysa sa wallet mo.',
+  "Oy, budget muna bago spend."
 ];
 
 const budgetCleared = () => localStorage.getItem(CLEARED_KEY) === '1';
@@ -193,53 +192,185 @@ $('#addForm').onsubmit = async e => {
 
 
 // ---------- history ----------
-async function loadHistory() {
-  const list = await api('/api/expenses');
+let historyExpenses = [];
 
-  let total = 0;
+function renderHistory() {
+  const search = $('#hSearch').value.trim().toLowerCase();
+  const category = $('#hCategoryFilter').value;
+  const sort = $('#hSort').value;
 
-  $('#hBody').innerHTML = list.map(x => {
-    total += x.amount;
+  // Calculate all-time total
+  const total = historyExpenses.reduce(
+    (sum, x) => sum + Number(x.amount || 0),
+    0
+  );
 
-    return `
+  // Calculate spending per category
+  const categoryTotals = {};
+
+  historyExpenses.forEach(x => {
+    const name = x.category || 'Others';
+
+    categoryTotals[name] =
+      (categoryTotals[name] || 0) + Number(x.amount || 0);
+  });
+
+  // Find the category with the highest spending
+  const topCategory = Object.entries(categoryTotals)
+    .sort((a, b) => b[1] - a[1])[0];
+
+  // Update summary cards
+  $('#hStatTotal').textContent = peso(total);
+  $('#hStatCount').textContent = historyExpenses.length;
+  $('#hStatCategory').textContent = topCategory
+    ? topCategory[0]
+    : 'None';
+
+  // Search and category filtering
+  let filtered = historyExpenses.filter(x => {
+    const description = String(x.description || '').toLowerCase();
+    const expenseCategory = String(x.category || '');
+
+    const matchesSearch =
+      description.includes(search) ||
+      expenseCategory.toLowerCase().includes(search);
+
+    const matchesCategory =
+      category === 'All' || expenseCategory === category;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  // Sorting
+  filtered.sort((a, b) => {
+    if (sort === 'newest') {
+      return String(b.date).localeCompare(String(a.date));
+    }
+
+    if (sort === 'oldest') {
+      return String(a.date).localeCompare(String(b.date));
+    }
+
+    if (sort === 'highest') {
+      return Number(b.amount) - Number(a.amount);
+    }
+
+    if (sort === 'lowest') {
+      return Number(a.amount) - Number(b.amount);
+    }
+
+    return 0;
+  });
+
+  // Category icons
+  const icons = {
+    Food: '🍔',
+    Transportation: '🚌',
+    Shopping: '🛍️',
+    Entertainment: '🎮',
+    Others: '📦'
+  };
+
+  // Display expenses
+  $('#hBody').innerHTML = filtered.length
+    ? filtered.map(x => {
+        const categoryName = String(x.category || 'Others');
+        const categoryClass = categoryName
+          .toLowerCase()
+          .replace(/[^a-z]/g, '');
+
+        return `
+          <tr>
+            <td>${esc(x.date)}</td>
+
+            <td>
+              <span class="history-category ${esc(categoryClass)}">
+                ${icons[categoryName] || '📦'}
+                ${esc(categoryName)}
+              </span>
+            </td>
+
+            <td>${esc(x.description)}</td>
+
+            <td class="r">${peso(x.amount)}</td>
+
+            <td>
+              <button
+                class="btn danger history-delete-btn"
+                data-id="${esc(x.id)}"
+                type="button"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('')
+    : `
       <tr>
-        <td>${x.date}</td>
-        <td>${esc(x.category)}</td>
-        <td>${esc(x.description)}</td>
-        <td class="r">${peso(x.amount)}</td>
-        <td>
-          <button class="btn danger" data-id="${x.id}">
-            Delete
-          </button>
+        <td colspan="5" class="history-empty">
+          <span class="history-empty-icon">🧾</span>
+          <strong>No expenses found</strong>
+          <span>
+            ${
+              search || category !== 'All'
+                ? 'Try changing your search or category filter.'
+                : 'Your wallet is having a peaceful day. Add your first expense!'
+            }
+          </span>
         </td>
       </tr>
     `;
-  }).join('') || `
-    <tr>
-      <td colspan="5" class="muted">No expenses yet.</td>
-    </tr>
-  `;
 
-  $('#hTotal').textContent = 'All-time total: ' + peso(total);
-
-  document.querySelectorAll('#hBody button').forEach(b => {
-    b.onclick = async () => {
-      if (!confirm('Delete this expense?')) return;
-
-      try {
-        await post('/api/expenses/delete', {
-          id: b.dataset.id
-        });
-
-        popup('Expense successfully deleted.', '', 'Expense Deleted!');
-        loadHistory();
-
-      } catch (err) {
-        popup(err.message, 'bad', 'Error');
-      }
-    };
-  });
+  // Update all-time total
+  $('#hTotal').textContent = peso(total);
 }
+
+// Load expense records
+async function loadHistory() {
+  historyExpenses = await api('/api/expenses');
+
+  renderHistory();
+}
+
+// Search listener
+$('#hSearch').addEventListener('input', renderHistory);
+
+// Category filter listener
+$('#hCategoryFilter').addEventListener('change', renderHistory);
+
+// Sorting listener
+$('#hSort').addEventListener('change', renderHistory);
+
+// Delete expense using event delegation
+$('#hBody').addEventListener('click', async e => {
+  const button = e.target.closest('.history-delete-btn');
+
+  if (!button) return;
+
+  if (!confirm('Delete this expense?')) return;
+
+  try {
+    await post('/api/expenses/delete', {
+      id: button.dataset.id
+    });
+
+    historyExpenses = historyExpenses.filter(
+      x => String(x.id) !== String(button.dataset.id)
+    );
+
+    renderHistory();
+
+    popup(
+      'Expense successfully deleted.',
+      '',
+      'Expense Deleted!'
+    );
+
+  } catch (err) {
+    popup(err.message, 'bad', 'Error');
+  }
+});
 
 
 // ---------- budget ----------
@@ -346,7 +477,8 @@ async function loadCalendar() {
   // Weekday HTML
   let html = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-  ].map(d => `<div class="dow">${d}</div>`).join('');
+  ].map(d => <div class="dow">${d}</div>).join('');
+
   const first = new Date(cal.y, cal.m, 1).getDay();
   const days = new Date(cal.y, cal.m + 1, 0).getDate();
 
@@ -402,7 +534,7 @@ async function loadCalendar() {
     from = ymd(start);
     to = ymd(end);
 
-    label = `Week: ${from} to ${to}`;
+    label = Week: ${from} to ${to};
 
   } else if (mode === 'Month') {
     from = ymd(new Date(sy, sm - 1, 1));
@@ -419,7 +551,7 @@ async function loadCalendar() {
   }
 
   const [list, s] = await Promise.all([
-    api(`/api/expenses?from=${from}&to=${to}`),
+    api(/api/expenses?from=${from}&to=${to}),
     getSummary()
   ]);
 
@@ -572,8 +704,8 @@ async function loadBreakdown() {
   const category = highest.name;
   const tips = savingTips[category] || [
     {
-      joke: "Te, clear budget na Your wallet has something to say about these expenses!",
-      advice: "Review your spending and identify purchases you can reduce or avoid."
+      joke: "Beh, your wallet is silently judging your spending decisions! 😭",
+      advice: "Take a closer look at your expenses and find purchases you can cut back on. Your future self will thank you!"
     }
   ];
 
