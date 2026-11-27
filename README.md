@@ -101,7 +101,7 @@ GastosKita brings everyday budgeting tools together in one organized workspace.
       Discover practical tips that encourage better spending habits.
     </td>
     <td width="50%" valign="top">
-      <h3>🔔 Budget Notifications</h3>
+      <h3>🔔 Witty Budget Messages</h3>
       Receive witty and informative reminders about your spending activity.
     </td>
   </tr>
@@ -165,56 +165,50 @@ GastosKita combines frontend technologies, Java backend functionality, and a MyS
 <a id="-take-a-look-around"></a>
 ## 🖼️ Take a Look Around
 
-A closer look at the GastosKita experience.
+Explore the different screens and features of GastosKita.
+
+<table>
+  <tr>
+    <th width="50%">Dashboard</th>
+    <th width="50%">Set Budget</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/dashboard.png" width="100%" alt="GastosKita Dashboard">
+    </td>
+    <td align="center">
+      <img src="screenshots/set-budget.png" width="100%" alt="GastosKita Set Budget">
+    </td>
+  </tr>
+  <tr>
+    <th>Add Expense</th>
+    <th>Expense History</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/add-expense.png" width="100%" alt="GastosKita Add Expense">
+    </td>
+    <td align="center">
+      <img src="screenshots/history.png" width="100%" alt="GastosKita Expense History">
+    </td>
+  </tr>
+  <tr>
+    <th>Calendar</th>
+    <th>Spending Breakdown</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/calendar.png" width="100%" alt="GastosKita Calendar">
+    </td>
+    <td align="center">
+      <img src="screenshots/breakdown.png" width="100%" alt="GastosKita Spending Breakdown">
+    </td>
+  </tr>
+</table>
 
 <p align="center">
-  <strong>01 — YOUR FINANCIAL OVERVIEW</strong>
-  <br>
-  <sub>Dashboard</sub>
-  <br><br>
-  <img src="screenshots/dashboard.png" width="95%" alt="GastosKita Dashboard">
+  <sub>Every feature is designed to make managing your money simpler and more organized.</sub>
 </p>
-
-<p align="center">
-  <strong>02 — PLAN YOUR SPENDING</strong>
-  <br>
-  <sub>Set Budget</sub>
-  <br><br>
-  <img src="screenshots/set-budget.png" width="95%" alt="GastosKita Set Budget">
-</p>
-
-<p align="center">
-  <strong>03 — KEEP TRACK OF EVERY PESO</strong>
-  <br>
-  <sub>Add Expense</sub>
-  <br><br>
-  <img src="screenshots/add-expense.png" width="95%" alt="GastosKita Add Expense">
-</p>
-
-<p align="center">
-  <strong>04 — YOUR SPENDING AT A GLANCE</strong>
-  <br>
-  <sub>Expense History</sub>
-  <br><br>
-  <img src="screenshots/history.png" width="95%" alt="GastosKita Expense History">
-</p>
-
-<p align="center">
-  <strong>05 — ORGANIZE YOUR FINANCES BY DATE</strong>
-  <br>
-  <sub>Calendar</sub>
-  <br><br>
-  <img src="screenshots/calendar.png" width="95%" alt="GastosKita Calendar">
-</p>
-
-<p align="center">
-  <strong>06 — KNOW WHERE YOUR MONEY GOES</strong>
-  <br>
-  <sub>Spending Breakdown</sub>
-  <br><br>
-  <img src="screenshots/breakdown.png" width="95%" alt="GastosKita Spending Breakdown">
-</p>
-
 ---
 
 ## 📁 Inside the Project
@@ -340,14 +334,16 @@ There is always room to grow. Some possible future improvements include:
 
 ---
 
-<a id="-the-people-behind-it"></a>
+ <a id="-the-people-behind-it"></a>
 ## 👥 The People Behind It
 
-Behind every project is a team that turns ideas into something real.
+<p align="center">
+  Behind every project is a team that turns ideas into something real.
+  <br>
+  Meet <strong>Team 1 – GastosKita</strong>, the people behind the design, development, and documentation.
+</p>
 
-Meet **Team 1 – GastosKita**, the people behind the design, development, and documentation.
-
-<table>
+<table align="center" width="85%">
   <tr>
     <td align="center" width="33%" valign="top">
       <img src="screenshots/team/haze.jpg" width="145" alt="Haze Darel Albuñán">
@@ -367,7 +363,7 @@ Meet **Team 1 – GastosKita**, the people behind the design, development, and d
       <br>
       <sub>Project Lead & Docs Architect</sub>
       <br><br>
-      <a href="https://github.com/camille03-IT?fbclid=IwY2xjawV2UElleHRuA2FlbQIxMQBwZG9mA3NydGMGYXBwX2lkATAAAR--Cv0UmhMI5860Gr2QUR0fNOoeBbe7bZ9APT-u33Ll-fTR4Rqej0yHVlCZNg_aem_R0Tda4mG5Yi1KSw4FWHeRQ">
+      <a href="https://github.com/camille03-IT">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Camille's GitHub">
       </a>
     </td>
@@ -391,11 +387,11 @@ Meet **Team 1 – GastosKita**, the people behind the design, development, and d
 
 This project is a product of learning, collaboration, and the shared effort to turn classroom concepts into something meaningful.
 
-We sincerely thank our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS), for the guidance, knowledge, and encouragement throughout the development of this project.
+We sincerely express our gratitude to our Object-Oriented Programming instructor, **Ms. Fatima Marie Agdon**, at **Batangas State University – The National Engineering University (Alangilan Campus)**, **College of Informatics and Computing Sciences (CICS)**, for her guidance, knowledge, and encouragement throughout the development of this project.
 
 We also appreciate our classmates and fellow students who shared their thoughts, suggestions, and feedback along the way.
 
-Every lesson, challenge, and contribution helped shape GastosKita into what it is today.
+Every lesson, challenge, and contribution helped shape **GastosKita** into what it is today.
 
 ---
 
