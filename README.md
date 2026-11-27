@@ -1,8 +1,12 @@
  <p align="center">
-  <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
+  <img src="web/header.gif" width="100%" alt="GastosKita - Make Every Peso Count">
 </p>
 
-<h1 align="center">🌿 GastosKita</h1>
+<h1 align="center">GastosKita</h1>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=22C55E&center=true&vCenter=true&width=600&lines=Track+your+expenses.;Build+smarter+saving+habits.;Make+every+peso+count." alt="Typing SVG">
+</p>
 
 <p align="center">
   <strong>MAKE EVERY PESO COUNT.</strong>
@@ -133,28 +137,6 @@ Behind GastosKita's interface is a Java implementation that applies fundamental 
 | **Factory Design Pattern** | `ExpenseFactory` creates the appropriate expense object based on its category. |
 | **Exception Handling** | `InvalidInputException` provides a custom exception for invalid expense input. |
 
-### A Look at the Expense Class Structure
-
-```text
-                  Expense
-               (Abstract Class)
-                      |
-        +-------------+-------------+
-        |             |             |
-    FoodExpense  TransportationExpense
-        |
-    ShoppingExpense
-        |
- EntertainmentExpense
-        |
-     OthersExpense
-
-             ExpenseFactory
-       Creates the appropriate
-           Expense object
-```
-
----
 
 <a id="-under-the-hood"></a>
 ## 🏗️ Under the Hood
@@ -282,6 +264,7 @@ GastosKita/
 │   ├── index.html
 │   ├── style.css
 │   ├── app.js
+│   ├── header.gif
 │   ├── header.png
 │   ├── logo.png
 │   └── logo-icon.png
@@ -369,7 +352,7 @@ Meet **Team 1 – GastosKita**, the people behind the design, development, and d
     <td align="center" width="33%" valign="top">
       <img src="screenshots/team/haze.jpg" width="145" alt="Haze Darel Albuñán">
       <br><br>
-      <strong>Albuñán, Haze Darel L.</strong>
+      <strong>Albuñan, Haze Darel L.</strong>
       <br>
       <sub>UI/UX Designer & Frontend Developer</sub>
       <br><br>
@@ -384,7 +367,7 @@ Meet **Team 1 – GastosKita**, the people behind the design, development, and d
       <br>
       <sub>Project Lead & Docs Architect</sub>
       <br><br>
-      <a href="https://avatars.githubusercontent.com/u/318849640?v=4">
+      <a href="https://github.com/camille03-IT?fbclid=IwY2xjawV2UElleHRuA2FlbQIxMQBwZG9mA3NydGMGYXBwX2lkATAAAR--Cv0UmhMI5860Gr2QUR0fNOoeBbe7bZ9APT-u33Ll-fTR4Rqej0yHVlCZNg_aem_R0Tda4mG5Yi1KSw4FWHeRQ">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Camille's GitHub">
       </a>
     </td>
@@ -395,7 +378,7 @@ Meet **Team 1 – GastosKita**, the people behind the design, development, and d
       <br>
       <sub>Lead Backend & OOP Engineer</sub>
       <br><br>
-      <a href="https://avatars.githubusercontent.com/u/318840759?v=4">
+      <a href="https://github.com/Nash-M20">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Steve's GitHub">
       </a>
     </td>
@@ -428,4 +411,8 @@ Every lesson, challenge, and contribution helped shape GastosKita into what it i
   <sub>Designed with purpose. Built with teamwork. Made for every peso.</sub>
   <br>
   <strong>© Team 1 – GastosKita</strong>
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:064E3B,50:15803D,100:22C55E&height=120&section=footer" width="100%" alt="Green waving footer">
 </p>
