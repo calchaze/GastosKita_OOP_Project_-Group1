@@ -339,7 +339,16 @@ This project would not have been possible without the guidance and support of ou
 
 ---
 
-[![Architecture diagram of calchaze/gastoskita_oop_project_-group1](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1/diagram.png)](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1?utm_source=readme&utm_medium=picture)
+## 🏗️ System Architecture
+
+GastosKita follows a modular architecture that separates the web interface, HTTP server, database operations, and expense management components. This structure helps organize the application's responsibilities and makes the system easier to maintain.
+
+The architecture illustrates how users interact with the web interface, how HTTP requests are handled and routed, and how the backend communicates with the MySQL database to manage expenses, budgets, and spending information.
+
+<p align="center">
+  <img src="screenshots/system-architecture.png" width="100%" alt="GastosKita System Architecture">
+</p>
+
 
 ## Thank You!
 
