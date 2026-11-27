@@ -23,17 +23,19 @@
 </p>
 
 <p align="center">
-  <a href="#-about-gastoskita">About</a> •
-  <a href="#-key-features">Features</a> •
-  <a href="#-oop-concepts">OOP Concepts</a> •
-  <a href="#-system-architecture">System Architecture</a> •
-  <a href="#-technologies-used">Technologies</a> •
-  <a href="#-application-showcase">Showcase</a> •
-  <a href="#-getting-started">Getting Started</a> •
-  <a href="#-meet-the-team">Team</a>
+  <a href="#about-gastoskita">About</a> •
+  <a href="#key-features">Features</a> •
+  <a href="#oop-concepts">OOP Concepts</a> •
+  <a href="#system-architecture">System Architecture</a> •
+  <a href="#technologies-used">Technologies</a> •
+  <a href="#application-showcase">Showcase</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#meet-the-team">Team</a>
 </p>
 
 ---
+
+<a id="about-gastoskita"></a>
 
 ## 📌 About GastosKita
 
@@ -42,6 +44,8 @@
 The system allows students to record expenses, organize transactions, set budgets, and monitor their spending through an organized and user-friendly interface.
 
 With practical budgeting tools and friendly reminders, GastosKita encourages students to make smarter financial decisions and develop responsible money management habits.
+
+<a id="key-features"></a>
 
 ## ✨ Key Features
 
@@ -107,6 +111,8 @@ Switch between light and dark themes for a more comfortable viewing experience.
 
 </details>
 
+<a id="oop-concepts"></a>
+
 ## 🧩 OOP Concepts
 
 GastosKita applies Object-Oriented Programming principles throughout its Java backend to organize expense management, promote code reusability, and support category-specific operations.
@@ -118,7 +124,9 @@ GastosKita applies Object-Oriented Programming principles throughout its Java ba
 | **Inheritance** | Specialized expense classes—`FoodExpense`, `TransportationExpense`, `ShoppingExpense`, `EntertainmentExpense`, and `OthersExpense`—extend `Expense`, inheriting its shared properties, methods, and constructor validation through `super()`. |
 | **Polymorphism** | The five expense subclasses override `getCategoryName()` and `getSavingTip()` to provide category-specific names and randomized saving suggestions while remaining compatible with the common `Expense` type. |
 | **Factory Design Pattern** | `ExpenseFactory` centralizes expense object creation through its static `create()` method, using a `switch` statement to instantiate the appropriate subclass based on the selected category and return it as an `Expense` object. |
-| **Exception Handling** | The custom checked exception `InvalidInputException`, which extends Java's `Exception` class, handles invalid expense amounts, empty descriptions, missing dates, and null or unrecognized expense categories by providing specific error messages. |
+| **Exception Handling** | The custom checked exception `InvalidInputException`, which extends Java's `Exception` class, is used to reject invalid expense amounts, empty descriptions, missing dates, and null or unrecognized expense categories through specific error messages. |
+
+<a id="system-architecture"></a>
 
 ## 🏗️ System Architecture
 
@@ -129,6 +137,8 @@ The architecture illustrates how users interact with the web interface, how HTTP
 <p align="center">
   <img src="screenshots/system-architecture.png" width="100%" alt="GastosKita System Architecture">
 </p>
+
+<a id="technologies-used"></a>
 
 ## 🛠️ Technologies Used
 
@@ -145,6 +155,8 @@ The architecture illustrates how users interact with the web interface, how HTTP
 | phpMyAdmin | Database administration |
 | Visual Studio Code | Development environment |
 | Git and GitHub | Version control and collaboration |
+
+<a id="application-showcase"></a>
 
 ## 🖥️ Application Showcase
 
@@ -188,6 +200,8 @@ Explore the six main pages of **GastosKita**, each designed to help students tra
     </td>
   </tr>
 </table>
+
+<a id="project-structure"></a>
 
 ## 📁 Project Structure
 
@@ -252,6 +266,8 @@ GastosKita_Group1/
 │
 └── README.md
 ```
+
+<a id="getting-started"></a>
 
 ## 🚀 Getting Started
 
@@ -325,6 +341,8 @@ java -cp "out;lib/mysql-connector-j-26.7.0.jar" GastosKitaServer
 
 Once the server starts, follow the local address and port configured in `GastosKitaServer.java` to open the application in your browser.
 
+<a id="future-improvements"></a>
+
 ## 🔮 Future Improvements
 
 GastosKita may be further improved through:
@@ -334,6 +352,8 @@ GastosKita may be further improved through:
 - Improved saving recommendations.
 - Enhanced user experience and accessibility.
 - Additional features that support responsible financial habits.
+
+<a id="meet-the-team"></a>
 
 ## 👥 Meet the Team
 
@@ -345,14 +365,16 @@ GastosKita was developed through the collaboration of the following team members
 | **Epa, Camille P.** | Project Lead & Docs Architect |
 | **Manalo, Steve Nash E.** | Lead Backend & OOP Engineer |
 
+<a id="acknowledgment"></a>
+
 ## 🙏 Acknowledgment
 
 This project would not have been possible without the guidance and support of our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS). The knowledge and insights shared throughout the course helped us transform our understanding of Java and Object-Oriented Programming into a functional application. We also extend our appreciation to our classmates and fellow students who shared their suggestions and feedback, helping us make GastosKita more relevant to the everyday financial needs of students.
 
 ---
 
-## Thank You!
+## 💚 Thank You!
 
 Thank you for exploring **GastosKita**! More than an expense tracker, this project reflects our goal of making budgeting easier and encouraging students to become more mindful of their financial decisions. We hope it inspires better spending habits, one small choice at a time.
 
-We code the system, you make every peso count — proudly built by Team 1 – GastosKita
+*We code the system, you make every peso count — proudly built by **Team 1 – GastosKita**.*
