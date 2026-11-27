@@ -339,6 +339,8 @@ This project would not have been possible without the guidance and support of ou
 
 ---
 
+[![Architecture diagram of calchaze/gastoskita_oop_project_-group1](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1/diagram.png)](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1?utm_source=readme&utm_medium=picture)
+
 ## Thank You!
 
 Thank you for exploring **GastosKita**! More than an expense tracker, this project reflects our goal of making budgeting easier and encouraging students to become more mindful of their financial decisions. We hope it inspires better spending habits, one small choice at a time.
