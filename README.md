@@ -1,4 +1,4 @@
-<p align="center">
+ <p align="center">
   <img src="web/header.png" width="100%" alt="GastosKita - Make Every Peso Count">
 </p>
 
@@ -26,6 +26,7 @@
   <a href="#-about-gastoskita">About</a> •
   <a href="#-key-features">Features</a> •
   <a href="#-oop-concepts">OOP Concepts</a> •
+  <a href="#-system-architecture">System Architecture</a> •
   <a href="#-technologies-used">Technologies</a> •
   <a href="#-application-showcase">Showcase</a> •
   <a href="#-getting-started">Getting Started</a> •
@@ -118,6 +119,16 @@ GastosKita applies Object-Oriented Programming principles throughout its Java ba
 | **Polymorphism** | The five expense subclasses override `getCategoryName()` and `getSavingTip()` to provide category-specific names and randomized saving suggestions while remaining compatible with the common `Expense` type. |
 | **Factory Design Pattern** | `ExpenseFactory` centralizes expense object creation through its static `create()` method, using a `switch` statement to instantiate the appropriate subclass based on the selected category and return it as an `Expense` object. |
 | **Exception Handling** | The custom checked exception `InvalidInputException`, which extends Java's `Exception` class, handles invalid expense amounts, empty descriptions, missing dates, and null or unrecognized expense categories by providing specific error messages. |
+
+## 🏗️ System Architecture
+
+GastosKita follows a modular architecture that separates the web interface, HTTP server, database operations, and expense management components. This structure helps organize the application's responsibilities and makes the system easier to maintain.
+
+The architecture illustrates how users interact with the web interface, how HTTP requests are handled and routed, and how the backend communicates with the MySQL database to manage expenses, budgets, and spending information.
+
+<p align="center">
+  <img src="screenshots/system-architecture.png" width="100%" alt="GastosKita System Architecture">
+</p>
 
 ## 🛠️ Technologies Used
 
@@ -236,7 +247,8 @@ GastosKita_Group1/
 │   ├── history.png
 │   ├── calendar.png
 │   ├── add-expense.png
-│   └── set-budget.png
+│   ├── set-budget.png
+│   └── system-architecture.png
 │
 └── README.md
 ```
@@ -338,8 +350,6 @@ GastosKita was developed through the collaboration of the following team members
 This project would not have been possible without the guidance and support of our Object-Oriented Programming instructor at **Batangas State University – The National Engineering University (Alangilan Campus)**, College of Informatics and Computing Sciences (CICS). The knowledge and insights shared throughout the course helped us transform our understanding of Java and Object-Oriented Programming into a functional application. We also extend our appreciation to our classmates and fellow students who shared their suggestions and feedback, helping us make GastosKita more relevant to the everyday financial needs of students.
 
 ---
-
-[![Architecture diagram of calchaze/gastoskita_oop_project_-group1](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1/diagram.png)](https://gitdiagram.com/calchaze/gastoskita_oop_project_-group1?utm_source=readme&utm_medium=picture)
 
 ## Thank You!
 
